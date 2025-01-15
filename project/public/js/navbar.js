@@ -11,16 +11,14 @@ if (!response.ok) {
   const user = await response.json();
   console.log(`User ${user.username} is logged in`);
 
-  document.querySelectorAll('.auth-required').forEach(el => {
+  document.querySelectorAll(".auth-required").forEach((el) => {
     el.classList.remove("hidden");
-  })
+  });
 
-  document.querySelectorAll('.auth-missing').forEach(el => {
+  document.querySelectorAll(".auth-missing").forEach((el) => {
     el.classList.add("hidden");
-  })
+  });
 
-const usernameNav = document.querySelector("nav-username");
-  usernameNav.innerText = user.username
-
-
+  const usernameNav = document.querySelector("nav-username");
+  usernameNav.innerText = user.username;
 }
