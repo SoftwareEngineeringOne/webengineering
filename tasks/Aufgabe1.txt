@@ -1,0 +1,26 @@
+Aufgabe 1: Wieviel Energie benötigt das Internet?
+-------------------------------------------------
+
+Recherchieren Sie den Energiebedarf in Wh für die folgenden Punkte
+a. einem Cloud-Rechenzentrum
+	876.000 kWh bis 26.280.000 kWh (IBM)
+b. einer Google-Anfrage
+	0,3 Wh
+c. berechnen eines Bitcoins
+	266.000 kWh
+d. eine Stunde Videostreaming
+	300 Wh
+e. Videostreaming weltweit
+	200 GWh / Jahr
+
+Zum Vergleich recherchieren Sie den Energieverbrauch in Wh
+a. einer Tasse Kaffee
+	30 Wh
+b. einer LED-Lampe
+	7 Wh
+c. einem Liter Benzin
+	8,5 kWh
+d. eines 3-Personen-Haushaltes
+	3100 kWh
+e. von Deutschland
+	467 TWh
