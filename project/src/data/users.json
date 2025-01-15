@@ -1,12 +1,7 @@
 [
   {
-    "username": "test",
-    "email": "test@test.com",
-    "password": "a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3"
-  },
-  {
-    "username": "teaffdg",
-    "email": "cool@cool.com",
-    "password": "8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92"
+    "username": "user",
+    "email": "user@user.com",
+    "password": "04f8996da763b7a969b1028ee3007569eaf3a635486ddab211d512c85b9df8fb"
   }
 ]
