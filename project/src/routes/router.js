@@ -1,34 +1,29 @@
+import express from "express";
 import { homeController } from "../controllers/homeController.js";
 import { registerController } from "../controllers/registerController.js";
 import { loginController } from "../controllers/loginController.js";
 import { staticFileController } from "../controllers/staticFileController.js";
 import { sessionController } from "../controllers/sessionController.js";
 
-/**
- * @type {Object.<string, Function>}
- */
-const routes = {
-  "GET /": homeController.getHomepage,
-  "GET /auth/register": registerController.handleGetRequest,
-  "POST /auth/register": registerController.handlePostRequest,
-  "GET /auth/login": loginController.handleGetRequest,
-  "POST /auth/login": loginController.handlePostRequest,
-  "GET /api/session/validate": sessionController.validateSession,
-};
+const app = express();
 
-export const router = {
-  handleRequest: async (req, res) => {
-    if (req.url.startsWith("/public/")) {
-      return staticFileController(req, res);
-    }
+// Middleware for serving static files
+app.use("/public", express.static("public"));
 
-    const routeKey = `${req.method} ${req.url}`;
-    const routeHandler = routes[routeKey] || notFoundHandler;
-    return routeHandler(req, res);
-  },
-};
+// Routes
+app.get("/", homeController.getHomepage);
 
-async function notFoundHandler(req, res) {
-  res.writeHead(404, { "Content-Type": "text/plain" });
-  res.end("Not Found");
-}
+app.get("/auth/register", registerController.handleGetRequest);
+app.post("/auth/register", registerController.handlePostRequest);
+
+app.get("/auth/login", loginController.handleGetRequest);
+app.post("/auth/login", loginController.handlePostRequest);
+
+app.get("/api/session/validate", sessionController.validateSession);
+
+// 404 Not Found Handler
+app.use((req, res) => {
+  res.status(404).send("Not Found");
+});
+
+export default app;
