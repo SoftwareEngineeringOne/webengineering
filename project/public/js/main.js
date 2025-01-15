@@ -1,1 +1,1 @@
-console.log("Welcome page script loaded");
+console.log("main.js script loaded");

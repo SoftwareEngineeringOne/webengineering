@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8"/>
+    <title>Login</title>
+    <link href="/public/css/styles.css" rel="stylesheet"/>
+</head>
+
+<body>
+<Navbar/>
+<h1>Login</h1>
+<form action="/auth/login" id="login-form" method="POST">
+    <label for="username">Username:</label>
+    <input id="username" name="username" required type="text"/>
+
+    <label for="password">Password:</label>
+    <input id="password" name="password" required type="password"/>
+
+    <button type="submit">Submit</button>
+</form>
+<script src="/public/js/login.js" type="module"></script>
+</body>
+
+</html>
