@@ -1,0 +1,31 @@
+Aufgabe 3: Datenschutz, Tracking und XML
+----------------------------------------
+
+1. Recherchieren und erklären Sie anschließend die folgenden Begriffe
+a. Browser Fingerprinting
+	Informationssammlung zur Benutzeridentifikation auf Webseiten
+b. Third-Party Cookies
+	Third-Party Cookies sind Cookies von Dritten. Diese Cookies werden von Adservern gehostet und zeichnen das Verhalten von Nutzern auf um ein Profil zu erstellen, mit welchem personenbezogene Werbung geschaltet werden kann.
+c. Google Analytics
+	Google Analytics ist ein Trackingtool, das den Datenverkehr von Webseiten analysiert und zur Erfolgskontrolle von Werbekampagnen dient.
+d. Fake News und Trusted Web
+	Fake News sind absichtlich falsche oder irreführende Informationen, die oft in Form von Nachrichten verbreitet werden.
+
+2. Recherchieren und überlegen Sie sich Verfahren, um das WWW sicherer und vertrauenswürdiger zu gestalten.
+	Es wäre möglich jegliche Interaktion mit dem WWW ausschließlich über eine Authentifizierung mit dem Personalausweis zu ermöglichen. Diese Methode erlaubt eine eindeutige Identifikation jeglicher Person, die sich im WWW aufhält und dementsprechend können auch alle Inhalte auf reale Personen zurückgeführt werden. Dadurch würde Betrug massiv erschwert werden und es könnten auch erfolgreiche Altersbeschränkungen durchgesetzt werden. Allerdings ist diese Methode technisch sehr schwer umzusetzen und hätte sehr große gesellschaftliche Auswirkungen. Der Anonyme Raum des WWW würde verschwinden und regulierende Behörden sehr viel Macht bekommen.
+
+3. Was versteht man unter XML Namespaces.
+	XML-Namensräume (englisch „XML namespaces“) werden benutzt, um Elemente und Attribute in einem XML-Dokument eindeutig zu identifizieren und um in einem einzelnen Dokument mehrere XML-Sprachen mischen zu können. Ihre Funktionsweise ist mit Vorwahlen bei Telefonnummern zu vergleichen. 
+Erklären Sie in diesem Zusammenhang die folgenden Techniken anhand konkreter Beispiele
+a. Was ist ein XML-Prefix?
+	Die "xml" Zeichenkette ist ein Präfix für einen Namensraum, der vom W3-Konsortium für die Erweiterungen von XML reserviert wurde (z.B. xml:lang, xml:space, xml:base, xml:id).
+b. Wie können Sie einen Namespace deklarieren?
+	Zuerst muss der Namensraum deklariert werden. Anschließend können Präfixe verwendet werden. z.B.:
+		<root xmlns:x="http://www.example.com/x">
+			<x:book>
+				<x:title>XML für Einsteiger</x:title>
+				<x:author>Max Mustermann</x:author>
+			</x:book>
+		</root>
+c. Was versteht man unter einem Default-Namespace?
+	Ein Namespace, der ohne Präfix deklariert wurde und somit auch die Elemente kein Präfix benötigen.
