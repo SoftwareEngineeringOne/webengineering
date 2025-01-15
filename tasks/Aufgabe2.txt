@@ -1,0 +1,66 @@
+Aufgabe 2: Suchmaschinen im WWW
+-------------------------------
+
+Suchmaschinen im WWW stellen den Benutzern einen essentiellen Kerndienst zur Verfügung. Recherchieren Sie die typische Funktionsweise von Crawlern und beantworten dann die folgenden Fragen:
+
+1. Erklären Sie die Funktionsweise eines Crawler und eines Indexers.
+	- Crawler sind Maschineni, die von Link zu Link gehen und neue Inhalte finden um die URL in einer Datenbank zu speichern
+	- Indexer sind Maschinen, die anschließend die Inhalte der Links durchsuchen um relevante Informationen zu speichern
+
+2. Was ist der Robots Exclusion Standard?
+	Der Robots Exclusion Standard (auch bekannt als robots.txt) ist ein Dateiformat mit Namenskonvention für Webserver, um bestimmten Bots mitzuteilen, ob und inwieweit sie willkommen oder unerwünscht sind. Umgesetzt wird das durch eine Textdatei namens robots.txt im Stammverzeichnis der Website. Webcrawler sollen zuerst eine Datei dieses Namens abzurufen versuchen, und sofern das gelingt, darin niedergeschriebene Grenzen achten. 
+
+3. Erklären Sie den Aufbau einer robots.txt anhand eines konkreten Beispiels.
+	Dem Google-Crawler wird jeglicher Zugriff gestattet. Allen anderen Crawler wird jeglicher Zugriff verwehrt.
+	Inhalt der robots.txt:
+		User-agent: Googlebot
+		Disallow: 
+		User-agent: *
+		Disallow: /
+
+4. Welche Regeln gelten für das Format und den Speicherort der robots.txt Datei.
+
+	Speicherort:
+		Die robots.txt-Datei muss im Hauptverzeichnis Ihrer Webseite abgelegt werden bzw. unter folgender Adresse erreichbar sein:
+		http://www.ihre-webseite.com/robots.txt
+
+	Wichtige Anweisungen:
+		Eine robots.txt kann folgende Funktionen beinhalten:
+		User-Agent: - Angabe von Robot-Namen.
+		    User-Agent:* – Darauffolgende Anweisungen beziehen sich auf alle Bots
+		    User-Agent: Googlebot – Drauffolgende Anweisungen beziehen sich nur auf bestimmtes Bot. In diesem Fall das „Googlebot“. 
+		Disallow – Zugriff blockieren
+		Allow – Zugriff erlauben. Diese Funktion wird lediglich benötigt, um die Ausnahmen in einem blockierten Bereich zu definieren. (Siehe Beispiel 5, unten). Ansonsten brauchen Sie nicht jeden einzelnen Bereich freizugeben. Solange es keine Blockierungen mit "disallow" gibt, ist die ganze Webseite zum Crawlen freigegeben.
+		Noindex – Indexierung einer URL, URL-Typs oder Webseitenbereichs verhindern
+		Sitemap – URL zur Sitemap angeben
+		Crawl-delay – Auslesegeschwindigkeit drosseln bzw. die Zugriffsintensität von bestimmten Bots auf Ihre Webseite beschränken. Diese Funktion finden selten Einsatz. 
+
+	Zusatzkommandos:
+		$ - Bedeutet Zeilenende
+		* - Beliebig viele Zeichen
+		# - Alles was nach der Raute in einer Zeile steht wird ignoriert. So können Sie ein Kommentar hinterlassen. 
+
+	Reihenfolge der User-Agents:
+
+		Beachten Sie die Reihenfolgen von User-Agents!
+
+		User-Agent: * 
+		# Ihre Anweisungen
+		1 User-Agent: Googlebot
+		# Anweisungen bezogen auf Googlebot
+		User-Agent: Googlebot-news
+		# Anweisungen bezogen nur auf google-news Bot
+
+6. Erklären Sie Funktionsweise von Google Ranking und den Zusammenhang mit SEO.
+	SEO steht für "Search Engine Optimization". Dieser Begriff bezeichnet das Optimieren eines Webauftritts zugunsten besserer Suchmaschinen-Lesbarkeit um bei Suchanfragen von Nutzern höher von Google platziert zu werden.
+
+7. Wie kann das Ranking einer Webseite verbessert werden? Listen und diskutieren Sie die entsprechenden
+Maßnahmen.
+	- Gut platzierte Keywords (im Link, in Überschriften, in Meta-Beschreibung)
+	- Verlinkungen (zu hochwertigen Artikel, nicht zur Konkurrenz, nicht zu "schmutzigen" Seiten, zu eigenen Seiten)
+	- Keywords einmal pro Seite nutzen
+	- Nicht zu viele Keywords nutzen (2%)
+
+	Jede dieser Maßnahmen trägt dazu bei die eigenen Webseiten bei Suchmaschinen weiter nach oben zu bringen. Allerdings sind diese Methoden kompetitiv und werden von den meisten verwendet. Dies führt zu einem Zwang und beeinflusst nachhaltig die Gestaltung der Webseiten.
+
+Google Suche – ein Kurzfilm: https://www.youtube.com/watch?v=BNHR6IQJGZs&ab_channel=Google
