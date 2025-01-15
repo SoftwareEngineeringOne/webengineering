@@ -23,10 +23,10 @@ export function addFormAsJsonListener(formId, successCallback) {
         body: JSON.stringify(data),
       });
 
-      if (response.ok) {
-        successCallback();
+      if(response.ok) {
+        successCallback()
       } else {
-        console.log("Failed to log in");
+        console.log("Failed to log in")
       }
     } catch (err) {
       console.error(err);

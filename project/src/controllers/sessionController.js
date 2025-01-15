@@ -15,7 +15,7 @@ export const sessionController = {
       res.end("Not logged in");
     } else {
       console.log("Logged In:", user);
-      const data = JSON.stringify({ username: user.username });
+      const data = JSON.stringify({"username": user.username})
       console.log("Data:", data);
       res.writeHead(200, { "Content-Type": "application/json" });
       res.end(data);
