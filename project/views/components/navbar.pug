@@ -1,0 +1,7 @@
+nav
+    a(href="/public") Home
+    a.auth-missing(href="/auth/register") Register
+    a.auth-missing(href="/auth/login") Login
+    a.hidden.auth-required(href="/auth/todo") Logout
+    a.hidden.auth-required#nav-username Username
+script(src="/public/js/navbar.js" type="module")
