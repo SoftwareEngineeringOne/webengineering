@@ -1,0 +1,12 @@
+extends layout
+
+block title
+    title= title
+
+block content
+    h1= message
+    if error && error.stack
+        h2= error.status
+        pre #{error.stack}
+    else
+        p An unexpected error occured. Please try again later

@@ -1,37 +1,26 @@
 import User from "../models/user.js";
 
 export const registerController = {
-    handleGetRequest: async (req, res) => {
-        console.log("Received GET request to /auth/register");
+    handleGetRequest: async (req, res, next) => {
         try {
             res.render("register");
         } catch (err) {
-            console.error(err);
-            res.writeHead(500, {"Content-Type": "text/plain"});
-            res.end("Internal Server Error");
+            next(err)
         }
     },
     handlePostRequest: async (req, res) => {
-        console.log("Received POST request to /auth/register");
 
-        let body = "";
-        req.on("data", (chunk) => {
-            body += chunk.toString();
-        });
+        const {username, email, password} = req.body;
 
-        req.on("end", async () => {
-            const {username, email, password} = JSON.parse(body);
+        const user = new User(username, email);
+        const success = await user.registerUser(password);
 
-            const user = new User(username, email);
-            const success = await user.registerUser(password);
-
-            if (success) {
-                res.writeHead(200, {"Content-Type": "text/plain"});
-                res.end("User created successfully");
-            } else {
-                res.writeHead(400, {"Content-Type": "text/plain"});
-                res.end("User already exists");
-            }
-        });
+        if (success) {
+            req.session.login(user);
+            res.status(200).json(user);
+        } else {
+            res.writeHead(400, {"Content-Type": "text/plain"});
+            res.end("User already exists");
+        }
     },
 };

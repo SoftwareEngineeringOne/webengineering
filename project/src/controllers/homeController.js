@@ -1,6 +1,5 @@
 export const homeController = {
     getHomepage: async (req, res) => {
-        console.log("Received GET request to /");
         try {
             res.render("index");
         } catch (err) {

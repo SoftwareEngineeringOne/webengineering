@@ -1,0 +1,19 @@
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        block icon
+            link(href="/img/favicon.ico" rel="icon")
+        block title
+            title Welcome
+        block stylesheets
+            link(href="/css/styles.css" rel="stylesheet")
+        block scripts
+            script(src="/js/default.js" type="module")
+    body
+        block navbar
+            include components/navbar
+        block content
+        block footer
+            #footer
+            p this is a footer

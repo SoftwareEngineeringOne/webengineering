@@ -1,11 +1,9 @@
-doctype html
-html(lang="en")
-    head
-        meta(charset="UTF-8")
-        title Login
-        link(href="/public/css/styles.css" rel="stylesheet")
-    body
-    include components/navbar.pug
+extends layout
+
+block scripts
+    script(src="/js/login.js" type="module")
+
+block content
     h1 Login
         form(action="/auth/login" id="login-form" method="POST")
             label(for="username") Username:
@@ -13,4 +11,3 @@ html(lang="en")
             label(for="password") Password:
             input#password(name="password" required type="password")
             button(type="submit") Submit
-        script(src="/public/js/login.js" type="module")

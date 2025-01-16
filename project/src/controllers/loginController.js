@@ -1,9 +1,7 @@
 import User from "../models/user.js";
-import crypto from "crypto";
 
 export const loginController = {
     handleGetRequest: async (req, res) => {
-        console.log("Received GET request to /auth/login");
         try {
             res.render("login");
         } catch (err) {
@@ -13,33 +11,19 @@ export const loginController = {
         }
     },
     handlePostRequest: async (req, res) => {
-        console.log("Received POST request to /auth/login");
 
-        let body = "";
-        req.on("data", (chunk) => {
-            body += chunk.toString();
-        });
 
-        req.on("end", async () => {
-            const {username, password} = JSON.parse(body);
+        const {username, password} = req.body;
 
-            const user = await User.loginUser(username, password);
-            if (!user) {
-                res.writeHead(401, {"Content-Type": "text/plain"});
-                res.end("Invalid username or password");
-                return;
-            }
+        const user = await User.loginUser(username, password);
+        if (!user) {
+            res.writeHead(401, {"Content-Type": "text/plain"});
+            res.end("Invalid username or password");
+            return;
+        }
 
-            const sessionId = crypto.randomBytes(16).toString("hex");
-            res.setHeader("Set-Cookie", `sessionId=${sessionId}; Path=/; HttpOnly;`);
+        req.session.login(user)
 
-            global.sessions = global.sessions || {};
-            global.sessions[sessionId] = user;
-            console.log("1 Global: ", global);
-            console.log("1 Active Sessions: ", global.sessions);
-
-            res.writeHead(200, {"Content-Type": "text/plain"});
-            res.end("User logged in successfully");
-        });
+        res.end("User logged in successfully");
     },
 };
