@@ -3,11 +3,13 @@ extends layout
 block scripts
     script(src="/js/login.js" type="module")
 
-block content
-    h1 Login
-        form(action="/auth/login" id="login-form" method="POST")
-            label(for="username") Username:
-            input#username(name="username" required type="text")
-            label(for="password") Password:
-            input#password(name="password" required type="password")
-            button(type="submit") Submit
+block main
+    .form
+        .card
+            h1 Login
+            form(action="/auth/login" id="login-form" method="POST")
+                label(for="username") Username:
+                input#username(name="username" required type="text")
+                label(for="password") Password:
+                input#password(name="password" required type="password")
+                button(type="submit") Submit

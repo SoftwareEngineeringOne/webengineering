@@ -1,9 +1,15 @@
+head
+    script(src="/js/navbar.js" type="module")
+    link(href="/css/navbar.css" rel="stylesheet")
+
 nav
-    a(href="/") Home
-    if !session.loggedIn
-        a(href="/auth/register") Register
-        a(href="/auth/login") Login
-    else
-        a= session.user.username
-        a(href="/auth/todo") Logout
-script(src="/js/navbar.js" type="module")
+    .left
+        a(href="/") Home
+    .right
+        if !session.loggedIn
+            a(href="/auth/register") Register
+            a(href="/auth/login") Login
+        else
+            a= session.user.username
+            a(href="/auth/todo") Logout
+

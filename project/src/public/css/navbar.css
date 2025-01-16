@@ -1,0 +1,14 @@
+nav {
+    background-color: black;
+    display: flex;
+    justify-content: space-between;
+}
+
+nav a {
+    padding: 0px 10px;
+}
+
+nav .right,
+nav .left {
+    padding: 25px 25px;
+}

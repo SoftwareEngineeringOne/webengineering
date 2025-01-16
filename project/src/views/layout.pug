@@ -11,9 +11,15 @@ html(lang="en")
         block scripts
             script(src="/js/default.js" type="module")
     body
-        block navbar
-            include components/navbar
-        block content
-        block footer
-            #footer
-            p this is a footer
+        .all
+            block navbar
+                .navbar
+                    include components/navbar
+
+            block main
+                .content
+                    block content
+
+            block footer
+                .footer
+                    p this is a footer
