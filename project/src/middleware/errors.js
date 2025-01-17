@@ -1,3 +1,10 @@
+/**
+ * Error handler middleware
+ * @param err
+ * @param req
+ * @param res
+ * @param next
+ */
 export function errorHandler(err, req, res, next) {
     console.error("Error:", err.message);
 
@@ -10,6 +17,12 @@ export function errorHandler(err, req, res, next) {
     });
 }
 
+/**
+ * Not found handler middleware
+ * @param req
+ * @param res
+ * @param next
+ */
 export function notFoundHandler(req, res, next) {
     const err = new Error('Not Found');
     err.status = 404;

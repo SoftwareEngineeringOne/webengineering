@@ -19,7 +19,7 @@ app.set('view engine', 'pug');
 
 app.use(loggerMiddleware);
 
-app.use('/', express.static(path.join('src', 'public')));
+app.use(express.static(path.join('src', 'public')));
 
 app.use(cookieMiddleware);
 app.use(sessionMiddleware);

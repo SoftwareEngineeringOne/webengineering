@@ -1,0 +1,17 @@
+name: Build JSDoc documentation
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+    jsdoc:
+      - name: Build
+        uses: andstor/jsdoc-action@v1
+        source_dir: ./project/src
+        recurse: true
+        output_dir: ./docs
