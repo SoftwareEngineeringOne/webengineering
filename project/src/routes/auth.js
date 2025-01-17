@@ -1,6 +1,7 @@
 import express from "express";
 import {registerController} from "../controllers/registerController.js";
 import {loginController} from "../controllers/loginController.js";
+import {logoutController} from "../controllers/logoutController.js";
 
 /**
  * @module routes/auth
@@ -52,6 +53,17 @@ router.get("/register", registerController.handleGetRequest);
  * @param {express.Response} res - The response object.
  */
 router.post("/register", registerController.handlePostRequest);
+
+/**
+ * Route handling logout request.
+ * @name post/logout
+ * @function
+ * @memberof module:routes/auth
+ * @inner
+ * @param {express.Request} req - The request object.
+ * @param {express.Response} res - The response object.
+ */
+router.post("/logout", logoutController.handlePostRequest);
 
 
 export default router;

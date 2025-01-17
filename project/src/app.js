@@ -8,6 +8,18 @@ import {loggerMiddleware} from "./middleware/logger.js";
 import {sessionMiddleware} from "./middleware/session.js";
 import {cookieMiddleware} from "./middleware/cookie.js";
 
+// TEMPORARY - SHOULD BE REMOVED
+import livereload from 'livereload';
+import connectLivereload from 'connect-livereload';
+
+const liveReloadServer = livereload.createServer();
+liveReloadServer.watch(path.join('src', 'public'));
+liveReloadServer.server.once("connection", () => {
+    setTimeout(() => {
+        liveReloadServer.refresh("/");
+    }, 100);
+})
+
 const PORT = process.env.PORT || 3000;
 
 const app = express();
@@ -16,6 +28,8 @@ app.locals.sessions = {};
 
 app.set('views', path.join('src', 'views'));
 app.set('view engine', 'pug');
+
+app.use(connectLivereload())
 
 app.use(loggerMiddleware);
 

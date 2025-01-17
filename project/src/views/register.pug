@@ -2,9 +2,8 @@ extends layout
 block scripts
     script(src="/js/register.js" type="module")
 
-block main
-
-    .form
+block content
+    .auth-form
         .card
             h1 Register
             form(action="/auth/register" id="register-form" method="POST")
@@ -15,4 +14,3 @@ block main
                 label(for="password") Password:
                 input#password(name="password" required type="password")
                 button(type="submit") Submit
-            script(src="/public/js/register.js" type="module")

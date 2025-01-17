@@ -23,6 +23,14 @@ class Session {
         this.loggedIn = true;
         this.user = user;
     }
+
+    /**
+     * Logs out the user from the session.
+     */
+    logout() {
+        this.loggedIn = false;
+        this.user = null;
+    }
 }
 
 export default Session;

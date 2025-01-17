@@ -1,33 +1,4 @@
-body {
-    padding: 0;
-    margin: 0;
-    font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-}
-
-a {
-    color: #00B7FF;
-}
-
-h1,
-p {
-    margin: 1rem;
-}
-
-form {
-    display: flex;
-    flex-direction: column;
-    max-width: 300px;
-    margin: 1rem;
-}
-
-label {
-    margin-top: 1rem;
-}
-
-input,
-button {
-    margin-top: 0.5rem;
-}
+@import "base.css";
 
 .all {
     display: flex;
@@ -36,12 +7,7 @@ button {
     min-height: 100vh;
 }
 
-.content {
-    flex-grow: 3;
-}
-
-.form {
-    width: 100vw;
+.auth-form {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -49,20 +15,25 @@ button {
 }
 
 .card {
-    background-color: lightgray;
+    background-color: var(--color-primary-container);
+    color: var(--color-on-primary-container);
+    box-shadow: var(--box-shadow);
     border-radius: 15px;
 }
 
-.form h1 {
+
+.auth-form h1 {
     text-align: center;
     margin: 10px 0;
 }
 
-.form form {
-    margin: 0px 20px 20px 20px;
+.auth-form form {
+    display: flex;
+    flex-direction: column;
+    margin: 0 20px 20px 20px;
 }
 
-.form label {
+.auth-form label {
     text-align: left;
 }
 

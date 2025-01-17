@@ -3,8 +3,8 @@ extends layout
 block scripts
     script(src="/js/login.js" type="module")
 
-block main
-    .form
+block content
+    .auth-form
         .card
             h1 Login
             form(action="/auth/login" id="login-form" method="POST")

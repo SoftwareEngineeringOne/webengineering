@@ -4,12 +4,16 @@ head
 
 nav
     .left
+        span Logo
         a(href="/") Home
+        a(href="/") Page2
+        a(href="/") Page3
+        a(href="/") Page4
     .right
         if !session.loggedIn
-            a(href="/auth/register") Register
             a(href="/auth/login") Login
+            a(href="/auth/register").call-to-action Register
         else
             a= session.user.username
-            a(href="/auth/todo") Logout
+            a(href="/")#logout-link Logout
 

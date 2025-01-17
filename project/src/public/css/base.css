@@ -1,0 +1,78 @@
+@import "colors.css";
+
+:root {
+    --active-brightness: 0.85;
+    --border-radius: 5px;
+    --box-shadow: 2px 2px 10px;
+    --font-family: "Lucida Grande", Helvetica, Arial, sans-serif;
+    --hover-brightness: 1.2;
+    --justify-important: center;
+    --justify-normal: left;
+    --line-height: 1.5;
+    --width-card: 285px;
+    --width-card-medium: 460px;
+    --width-card-wide: 800px;
+    --width-content: 1080px;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: var(--color-background);
+    color: var(--color-on-background);
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    font: 14px var(--font-family);
+}
+
+footer, header, main {
+    margin: 0 auto;
+    max-width: var(--width-content);
+    padding: 3rem 1rem;
+}
+
+a {
+    color: var(--color-variation1-color);
+}
+
+img {
+    max-width: 100%;
+}
+
+button {
+    background-color: var(--color-primary);
+    color: var(--color-on-primary);
+    color: white;
+    border: none;
+    margin: 0.5rem 0;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: filter 0.3s ease;
+}
+
+button:hover {
+    filter: brightness(var(--hover-brightness));
+}
+
+* {
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-surface-dim) transparent;
+}
+
+*::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+}
+
+*::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+    background-color: var(--color-surface-dim);
+    border-radius: 10px;
+}
