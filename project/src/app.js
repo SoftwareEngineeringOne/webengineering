@@ -15,6 +15,8 @@ import connectLivereload from 'connect-livereload';
 
 const app = express();
 
+console.log(`Running in ${process.env.NODE_ENV} mode`);
+
 if (process.env.NODE_ENV !== 'production') {
     const liveReloadServer = livereload.createServer();
     liveReloadServer.watch(path.join('src', 'public'));
