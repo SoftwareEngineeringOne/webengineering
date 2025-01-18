@@ -1,0 +1,16 @@
+[
+  {
+    "title": "test",
+    "content": "test",
+    "author": "user",
+    "createdAt": "2025-01-18T08:48:05.254Z",
+    "archived": false
+  },
+  {
+    "title": "Hallo there!",
+    "content": "Lorem Ipsum Latein ist toll",
+    "author": "test",
+    "createdAt": "2025-01-18T08:49:09.799Z",
+    "archived": false
+  }
+]

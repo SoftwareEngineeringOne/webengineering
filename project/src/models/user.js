@@ -4,21 +4,47 @@ import path from "node:path";
 const usersFile = path.join(process.cwd(), "src", "data", "users.json");
 
 /**
+ * @typedef {Symbol} Role
+ */
+/**
+ * @typedef {Object} Roles
+ * @property {Role} ADMIN
+ * @property {Role} AUTHOR
+ * @property {Role} USER
+ */
+/** @type {Readonly<Roles>} */
+const Roles = Object.freeze({
+    /** @type {Role} */
+    ADMIN: Symbol("admin"),
+    /** @type {Role} */
+    AUTHOR: Symbol("author"),
+    /** @type {Role} */
+    USER: Symbol("user"),
+})
+
+/**
  * User class
  */
 class User {
-    constructor(username, email) {
+    /**
+     * @param {string} username
+     * @param {string} email
+     * @param {Role} role
+     */
+    constructor(username, email, role = Roles.USER) {
         /** @type {string} */
         this.username = username;
         /** @type {string} */
         this.email = email;
+        /** @type {Role} */
+        this.role = role;
     }
 
     /**
      * Logs in a user.
      * @param username
      * @param password
-     * @returns {Promise<*|null>}
+     * @returns {Promise<User|null>}
      */
     static async loginUser(username, password) {
         try {

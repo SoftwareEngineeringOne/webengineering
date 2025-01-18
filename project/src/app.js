@@ -3,6 +3,7 @@ import path from "node:path";
 import indexRouter from './routes/index.js';
 import authRouter from './routes/auth.js';
 import apiRouter from './routes/api.js';
+import postsRouter from './routes/posts.js';
 import {errorHandler, notFoundHandler} from "./middleware/errors.js";
 import {loggerMiddleware} from "./middleware/logger.js";
 import {sessionMiddleware} from "./middleware/session.js";
@@ -45,6 +46,7 @@ app.use(express.urlencoded({extended: false}));
 app.use('/', indexRouter)
 app.use('/auth', authRouter)
 app.use('/api', apiRouter)
+app.use('/posts', postsRouter)
 
 app.use(notFoundHandler);
 app.use(errorHandler);
