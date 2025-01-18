@@ -3,6 +3,9 @@ name: Build and Push Dockerimage
 on:
   release:
     types: [created]
+  push:
+    branches:
+      - deploy
 
 env:
     GHCR: ghcr.io
