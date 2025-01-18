@@ -8,25 +8,25 @@ import {errorHandler, notFoundHandler} from "./middleware/errors.js";
 import {loggerMiddleware} from "./middleware/logger.js";
 import {sessionMiddleware} from "./middleware/session.js";
 import {cookieMiddleware} from "./middleware/cookie.js";
+// import livereload from 'livereload';
+// import connectLivereload from 'connect-livereload';
 
-// TEMPORARY - SHOULD BE REMOVED
-import livereload from 'livereload';
-import connectLivereload from 'connect-livereload';
 
 const app = express();
 
 console.log(`Running in ${process.env.NODE_ENV} mode`);
 
-if (process.env.NODE_ENV !== 'production') {
-    const liveReloadServer = livereload.createServer();
-    liveReloadServer.watch(path.join('src', 'public'));
-    liveReloadServer.server.once("connection", () => {
-        setTimeout(() => {
-            liveReloadServer.refresh("/");
-        }, 100);
-    })
-    app.use(connectLivereload())
-}
+// if (process.env.NODE_ENV !== 'production') {
+//     console.log("Activating live reload");
+//     const liveReloadServer = livereload.createServer();
+//     liveReloadServer.watch(path.join('src', 'public'));
+//     liveReloadServer.server.once("connection", () => {
+//         setTimeout(() => {
+//             liveReloadServer.refresh("/");
+//         }, 100);
+//     })
+//     app.use(connectLivereload())
+// }
 
 const PORT = process.env.PORT || 3000;
 

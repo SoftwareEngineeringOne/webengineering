@@ -13,4 +13,8 @@ block content
                 a(href=`/posts/${post.id}`) Read more
                 p
                     | Posted by #{post.author} on #{post.createdAt}
+    if session.loggedIn
+        a(href="/posts/new") New Post
+    else
+        p You must be logged in to create a post.
 
