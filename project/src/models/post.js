@@ -1,5 +1,6 @@
 import path from "node:path";
 import fs from "node:fs/promises";
+import crypto from "node:crypto";
 
 const postsFile = path.join(process.cwd(), "src", "data", "posts.json");
 
@@ -10,6 +11,8 @@ class Post {
      * @param {User} author
      */
     constructor(title, content, author) {
+        /** @type {string} */
+        this.id = crypto.randomBytes(24).toString("hex");
         /** @type {string} */
         this.title = title;
         /** @type {string} */
@@ -32,6 +35,17 @@ class Post {
             return JSON.parse(data);
         } catch (err) {
             console.error("Error getting posts:", err);
+            throw err;
+        }
+    }
+
+    static async getWithId(id) {
+        try {
+            const data = await fs.readFile(postsFile, "utf8");
+            const posts = JSON.parse(data);
+            return posts.find(post => post.id === id);
+        } catch (err) {
+            console.error("Error getting post:", err);
             throw err;
         }
     }

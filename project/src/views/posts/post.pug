@@ -1,0 +1,11 @@
+extends ../layout
+
+block scripts
+    script(src="/js/post.js" type="module")
+
+block content
+    h1=post.title
+    p=post.content
+    p
+        | Posted by #{post.author} on #{post.createdAt}
+    a(href="/posts") Back

@@ -13,24 +13,27 @@ import {cookieMiddleware} from "./middleware/cookie.js";
 import livereload from 'livereload';
 import connectLivereload from 'connect-livereload';
 
-const liveReloadServer = livereload.createServer();
-liveReloadServer.watch(path.join('src', 'public'));
-liveReloadServer.server.once("connection", () => {
-    setTimeout(() => {
-        liveReloadServer.refresh("/");
-    }, 100);
-})
+const app = express();
+
+if (process.env.NODE_ENV !== 'production') {
+    const liveReloadServer = livereload.createServer();
+    liveReloadServer.watch(path.join('src', 'public'));
+    liveReloadServer.server.once("connection", () => {
+        setTimeout(() => {
+            liveReloadServer.refresh("/");
+        }, 100);
+    })
+    app.use(connectLivereload())
+}
 
 const PORT = process.env.PORT || 3000;
 
-const app = express();
 
 app.locals.sessions = {};
 
 app.set('views', path.join('src', 'views'));
 app.set('view engine', 'pug');
 
-app.use(connectLivereload())
 
 app.use(loggerMiddleware);
 

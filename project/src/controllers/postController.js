@@ -1,7 +1,7 @@
 import Post from "../models/post.js";
 
 export const PostController = {
-    getPosts: async (req, res) => {
+    displayAllPosts: async (req, res) => {
         try {
             const posts = await Post.getAll();
             res.render("posts/posts", {posts});
@@ -11,8 +11,36 @@ export const PostController = {
             res.end("Internal Server Error");
         }
     },
-    getForm: (req, res) => {
-        res.render("posts/postsForm");
+
+    displayPostWithId: async (req, res) => {
+        try {
+            const post = await Post.getWithId(req.params.id);
+            if (!post) {
+                res.writeHead(404, {"Content-Type": "text/plain"});
+                res.end("Post not found");
+                return;
+            }
+            res.render("posts/post", {post});
+        } catch (err) {
+            console.error(err);
+            res.writeHead(500, {"Content-Type": "text/plain"});
+            res.end("Internal Server Error");
+        }
+    },
+
+    displayForm: async (req, res) => {
+        if (req.params.id) {
+            const post = await Post.getWithId(req.params.id);
+            if (!post) {
+                res.writeHead(404, {"Content-Type": "text/plain"});
+                res.end("Post not found");
+                return;
+            }
+            console.log("Existing post:", post);
+            res.render("posts/postsForm", {existing_post: post});
+        } else {
+            res.render("posts/postsForm");
+        }
     },
 
     createPost: async (req, res) => {

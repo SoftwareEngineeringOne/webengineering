@@ -3,13 +3,16 @@ import {PostController} from "../controllers/postController.js";
 
 const router = express.Router();
 
-router.get("/new", PostController.getForm);
+router.get("/new", PostController.displayForm);
 
-router.get("/", PostController.getPosts);
+router.get("/", PostController.displayAllPosts);
+
+router.get("/:id", PostController.displayPostWithId);
+
+router.get("/:id/edit", PostController.displayForm);
 
 router.post("/", PostController.createPost);
 
-router.get("/:id");
 
 router.put("/:id");
 
