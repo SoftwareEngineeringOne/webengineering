@@ -1,7 +1,7 @@
 import express from "express";
-import {registerController} from "../controllers/registerController.js";
-import {loginController} from "../controllers/loginController.js";
-import {logoutController} from "../controllers/logoutController.js";
+import {registerController} from "../controllers/auth/registerController.js";
+import {loginController} from "../controllers/auth/loginController.js";
+import {logoutController} from "../controllers/auth/logoutController.js";
 
 /**
  * @module routes/auth

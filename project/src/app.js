@@ -1,6 +1,6 @@
 import express from 'express';
 import path from "node:path";
-import indexRouter from './routes/index.js';
+import rootRouter from './routes/root.js';
 import authRouter from './routes/auth.js';
 import apiRouter from './routes/api.js';
 import postsRouter from './routes/posts.js';
@@ -48,7 +48,7 @@ app.use(express.json())
 app.use(express.urlencoded({extended: false}));
 
 
-app.use('/', indexRouter)
+app.use('/', rootRouter)
 app.use('/auth', authRouter)
 app.use('/api', apiRouter)
 app.use('/posts', postsRouter)

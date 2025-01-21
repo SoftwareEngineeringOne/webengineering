@@ -9,5 +9,6 @@ block content
     p
         | Posted by #{post.author} on #{post.createdAt}
     if session.loggedIn
-        a(href=`/posts/${post.id}/edit`) Edit
+        if session.user.role === 'admin' || session.user.username === post.author
+            a(href=`/posts/${post.id}/edit`) Edit
     a(href="/posts") Back

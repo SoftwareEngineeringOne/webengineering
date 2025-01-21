@@ -1,13 +1,16 @@
-import {addFormAsJsonListener} from "./utils.js";
+import {addSubmitListener, passwordEncryptModifier, sendFormAsJson} from "./utils.js";
 
 console.log("login.js script loaded");
 
-addFormAsJsonListener("login-form", async (response) => {
-    const previousPageUrl = document.referrer;
-    const cacheBuster = `?_=${new Date().getTime()}`;
-    if (previousPageUrl) {
-        window.location.assign(previousPageUrl + cacheBuster);
-    } else {
-        window.location.assign("/" + cacheBuster);
+addSubmitListener("login-form", async (event) => {
+    try {
+        const response = await sendFormAsJson(event.target, [passwordEncryptModifier]);
+        if (response.ok) {
+            window.location.assign("/");
+        } else {
+            console.error("Failed to log in");
+        }
+    } catch (err) {
+        console.error(err);
     }
-});
+})

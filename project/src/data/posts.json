@@ -5,7 +5,7 @@
     "content": "test",
     "author": "user",
     "createdAt": "2025-01-18T12:04:31.837Z",
-    "archived": false
+    "status": "published"
   },
   {
     "id": "673420d6dd23c02bccb5d849b153b6ce2c2da4fdccc81694",
@@ -13,6 +13,22 @@
     "content": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.",
     "author": "user",
     "createdAt": "2025-01-18T12:12:56.571Z",
-    "archived": false
+    "status": "published"
+  },
+  {
+    "id": "3f3f3d0aaee4bddb72351ca6457d1b3bd0f7ae77a45fc49a",
+    "title": "neuer test",
+    "content": "1234",
+    "author": "user",
+    "createdAt": "2025-01-21T10:29:57.692Z",
+    "status": "published"
+  },
+  {
+    "id": "8006afe7eb8b03712ecaeb09c56635b646267f01bc2dbb7a",
+    "title": "Updated",
+    "content": "r htgthtzjnh",
+    "author": "user",
+    "createdAt": "2025-01-21T10:30:37.290Z",
+    "status": "published"
   }
 ]

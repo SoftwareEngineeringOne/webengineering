@@ -14,7 +14,5 @@ block content
                 p
                     | Posted by #{post.author} on #{post.createdAt}
     if session.loggedIn
-        a(href="/posts/new") New Post
-    else
-        p You must be logged in to create a post.
-
+        if session.user.role === 'admin' || session.user.role === 'author'
+            a(href="/posts/new") New Post

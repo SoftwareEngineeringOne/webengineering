@@ -4,7 +4,7 @@ import path from "node:path";
 const usersFile = path.join(process.cwd(), "src", "data", "users.json");
 
 /**
- * @typedef {Symbol} Role
+ * @typedef {string} Role
  */
 /**
  * @typedef {Object} Roles
@@ -13,13 +13,13 @@ const usersFile = path.join(process.cwd(), "src", "data", "users.json");
  * @property {Role} USER
  */
 /** @type {Readonly<Roles>} */
-const Roles = Object.freeze({
+export const Roles = Object.freeze({
     /** @type {Role} */
-    ADMIN: Symbol("admin"),
+    ADMIN: "admin",
     /** @type {Role} */
-    AUTHOR: Symbol("author"),
+    AUTHOR: "author",
     /** @type {Role} */
-    USER: Symbol("user"),
+    USER: "user",
 })
 
 /**
@@ -28,14 +28,11 @@ const Roles = Object.freeze({
 class User {
     /**
      * @param {string} username
-     * @param {string} email
      * @param {Role} role
      */
-    constructor(username, email, role = Roles.USER) {
+    constructor(username, role = Roles.USER) {
         /** @type {string} */
         this.username = username;
-        /** @type {string} */
-        this.email = email;
         /** @type {Role} */
         this.role = role;
     }
@@ -54,6 +51,9 @@ class User {
             const user = users.find(
                 (u) => u.username === username && u.password === password,
             );
+            console.log("User found:", user);
+            console.log("Role:", user.role);
+            console.log("Role type:", typeof user.role);
 
             return user || null;
         } catch (err) {
@@ -68,19 +68,23 @@ class User {
      * @returns {Promise<boolean>}
      */
     async registerUser(password) {
-        if (!this.username || !this.email || !password) return false;
+        if (!this.username || !password) return false;
 
         try {
             const data = await fs.readFile(usersFile, "utf8");
             const users = JSON.parse(data);
 
             // Check if user already exists
-            if (users.some((u) => u.email === this.email)) {
+            if (users.some((u) => u.username === this.username)) {
                 return false;
             }
 
             // Add new user
-            users.push({username: this.username, email: this.email, password});
+            users.push({
+                username: this.username,
+                password,
+                role: this.role,
+            });
             await fs.writeFile(usersFile, JSON.stringify(users, null, 2));
 
             return true;
@@ -89,6 +93,8 @@ class User {
             return false;
         }
     }
+
+
 }
 
 export default User;

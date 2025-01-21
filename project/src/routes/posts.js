@@ -14,7 +14,7 @@ router.get("/:id/edit", PostController.displayForm);
 router.post("/", PostController.createPost);
 
 
-router.put("/:id");
+router.post("/:id", PostController.updatePost);
 
 router.delete("/:id");
 

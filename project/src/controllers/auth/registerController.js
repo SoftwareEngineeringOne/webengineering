@@ -1,18 +1,18 @@
-import User from "../models/user.js";
+import User from "../../models/user.js";
 
 export const registerController = {
     handleGetRequest: async (req, res, next) => {
         try {
-            res.render("register");
+            res.render("auth/register");
         } catch (err) {
             next(err)
         }
     },
     handlePostRequest: async (req, res) => {
 
-        const {username, email, password} = req.body;
+        const {username, password} = req.body;
 
-        const user = new User(username, email);
+        const user = new User(username);
         const success = await user.registerUser(password);
 
         if (success) {

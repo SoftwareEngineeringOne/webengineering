@@ -7,7 +7,7 @@ block scripts
 block content
     if !existing_post
         h1 create a post
-        form(action="/posts" method="POST")
+        form(action="/posts" method="POST" id="post-form")
             label(for="title") Title:
             input#title(name="title" required type="text")
             label(for="content") Content:
@@ -15,9 +15,9 @@ block content
             button(type="submit") Submit
     else
         h1 edit a post
-            form(action=`/posts/${existing_post.id}` method="PUT")
-            label(for="title") Title:
-            input#title(name="title" required type="text" value=existing_post.title)
-            label(for="content") Content:
-            textarea#content(name="content" required)=existing_post.content
-            button(type="submit") WIP
+            form(action=`/posts/${existing_post.id}` method="POST" id="post-form")
+                label(for="title") Title:
+                input#title(name="title" required type="text" value=existing_post.title)
+                label(for="content") Content:
+                textarea#content(name="content" required)=existing_post.content
+                button(type="submit") WIP

@@ -1,7 +1,16 @@
-import {addFormAsJsonListener} from "./utils.js";
+import {addSubmitListener, passwordEncryptModifier, sendFormAsJson} from "./utils.js";
 
-console.log("register.js script loaded");
+console.log("login.js script loaded");
 
-addFormAsJsonListener("register-form", async (response) => {
-    window.location.assign("/");
-});
+addSubmitListener("register-form", async (event) => {
+    try {
+        const response = await sendFormAsJson(event.target, [passwordEncryptModifier]);
+        if (response.ok) {
+            window.location.assign("/");
+        } else {
+            console.error("Failed to log in");
+        }
+    } catch (err) {
+        console.error(err);
+    }
+})

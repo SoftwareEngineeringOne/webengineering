@@ -1,9 +1,9 @@
-import User from "../models/user.js";
+import User from "../../models/user.js";
 
 export const loginController = {
     handleGetRequest: async (req, res) => {
         try {
-            res.render("login");
+            res.render("auth/login");
         } catch (err) {
             console.error(err);
             res.writeHead(500, {"Content-Type": "text/plain"});
