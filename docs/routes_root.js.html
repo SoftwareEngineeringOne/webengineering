@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: routes/auth.js</title>
+    <title>JSDoc: Source: routes/root.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: routes/auth.js</h1>
+    <h1 class="page-title">Source: routes/root.js</h1>
 
     
 
@@ -26,75 +26,71 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import express from "express";
-import {registerController} from "../controllers/auth/registerController.js";
-import {loginController} from "../controllers/auth/loginController.js";
-import {logoutController} from "../controllers/auth/logoutController.js";
+            <pre class="prettyprint source linenums"><code>import {homeController} from "../controllers/homeController.js";
+import express from "express";
 
 /**
- * @module routes/auth
+ * @module routes/index
  */
 
-/** Express router providing auth routes */
+/** Express router providing main routes. */
 const router = express.Router();
 
 /**
- * Route serving login page.
- * @name get/login
+ * Route serving the homepage.
+ * @name get/
  * @function
- * @memberof module:routes/auth
+ * @memberof module:routes/index
  * @inner
  * @param {express.Request} req - The request object.
  * @param {express.Response} res - The response object.
  */
-router.get("/login", loginController.handleGetRequest);
+router.get("/", homeController.getHomepage);
 
 /**
- * Route handling login form submission.
- * @name post/login
+ * Route serving a test error page.
+ * @name get/error
  * @function
- * @memberof module:routes/auth
+ * @memberof module:routes/index
  * @inner
  * @param {express.Request} req - The request object.
  * @param {express.Response} res - The response object.
+ * @param {function} next - The next middleware function.
  */
-router.post("/login", loginController.handlePostRequest);
+router.get("/error", (req, res, next) => {
+    const err = new Error("This is a test error");
+    err.status = 500;
+    next(err);
+});
 
 /**
- * Route serving registration page.
- * @name get/register
+ * Route redirecting to the login page.
+ * @name all/login
  * @function
- * @memberof module:routes/auth
+ * @memberof module:routes/index
  * @inner
  * @param {express.Request} req - The request object.
  * @param {express.Response} res - The response object.
  */
-router.get("/register", registerController.handleGetRequest);
+router.all("/login", (req, res) => {
+    res.redirect("/auth/login");
+});
 
 /**
- * Route handling registration form submission.
- * @name post/register
+ * Route redirecting to the registration page.
+ * @name all/register
  * @function
- * @memberof module:routes/auth
+ * @memberof module:routes/index
  * @inner
  * @param {express.Request} req - The request object.
  * @param {express.Response} res - The response object.
  */
-router.post("/register", registerController.handlePostRequest);
+router.all("/register", (req, res) => {
+    res.redirect("/auth/register");
+});
 
-/**
- * Route handling logout request.
- * @name post/logout
- * @function
- * @memberof module:routes/auth
- * @inner
- * @param {express.Request} req - The request object.
- * @param {express.Response} res - The response object.
- */
-router.post("/logout", logoutController.handlePostRequest);
-
-
-export default router;</code></pre>
+export default router;
+</code></pre>
         </article>
     </section>
 
