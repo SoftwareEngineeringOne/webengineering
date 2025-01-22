@@ -1,5 +1,5 @@
-import Post from "../models/post.js";
-import {Roles} from "../models/user.js";
+import Post from "../../models/post.js";
+import {Roles} from "../../models/user.js";
 
 export const PostController = {
     displayAllPosts: async (req, res) => {

@@ -1,4 +1,4 @@
-import {homeController} from "../controllers/homeController.js";
+import {homeController} from "../controllers/home/homeController.js";
 import express from "express";
 
 /**
