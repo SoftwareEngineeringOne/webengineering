@@ -2,15 +2,17 @@ export const protectedMiddleware = {
   roleProtection: (allowedRoles) => {
     return (req, res, next) => {
       if (!req.session.loggedIn) {
-        res.redirect("/auth/login");
+        if(req.method == "GET") {
+          res.redirect("/auth/login");
+        } else {
+          next({ status: 401, message: "Unauthorized"})
+        } 
         return;
       }
-
       if (!allowedRoles.includes(req.session.user.role)) {
-        next({ status: 404, message: "Unauthorized"})
+        next({ status: 401, message: "Unauthorized"})
         return;
       }
-
       next();
     };
   },

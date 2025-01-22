@@ -5,19 +5,26 @@ import { protectedMiddleware } from "../middleware/protected.js"
 
 const router = express.Router();
 
-router.use("/new", protectedMiddleware.roleProtection([Roles.ADMIN, Roles.AUTHOR]))
+const roleMiddleware = protectedMiddleware.roleProtection([Roles.ADMIN, Roles.AUTHOR])
+
+router.use("/new", roleMiddleware); 
 router.get("/new", PostController.displayForm);
 
 router.get("/", PostController.displayAllPosts);
 
 router.get("/:id", PostController.displayPostWithId);
 
+router.use("/:id/edit", roleMiddleware)
 router.get("/:id/edit", PostController.displayForm);
+router.post("/:id/edit", roleMiddleware)
 
+router.post("/:id", roleMiddleware); 
+router.post("/:id", PostController.updatePost);
+router.post("/", roleMiddleware);
 router.post("/", PostController.createPost);
 
-router.post("/:id", PostController.updatePost);
 
+router.delete("/:id", roleMiddleware)
 router.delete("/:id");
 
 export default router;

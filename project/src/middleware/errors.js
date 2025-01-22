@@ -9,6 +9,7 @@ export function errorHandler(err, req, res, next) {
   console.error("Error:", err.message);
 
   const statusCode = err.status || 500;
+  console.error("Status:", err.status);
 
   res.status(statusCode).render("error", {
     title: "Error",
