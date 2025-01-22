@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: middleware/logger.js</title>
+    <title>JSDoc: Source: routes/admin.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: middleware/logger.js</h1>
+    <h1 class="page-title">Source: routes/admin.js</h1>
 
     
 
@@ -26,16 +26,22 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>/**
- * Middleware to log the request method and URL
- * @param req
- * @param res
- * @param next
- */
-export const loggerMiddleware = (req, res, next) => {
-  console.log(`[${new Date().toISOString()}] ${req.url} ${req.method}`);
-  next();
-};
+            <pre class="prettyprint source linenums"><code>import express from "express";
+import { adminController } from "../controllers/admin/adminController.js";
+import { protectedMiddleware } from "../middleware/protected.js";
+import { Roles } from "../models/user.js"
+
+/** Express router providing API routes */
+const router = express.Router();
+
+router.use(protectedMiddleware.roleProtection([Roles.ADMIN]));
+
+router.get("/", (req, res) => {
+  res.redirect("/admin/dashboard");
+});
+router.get("/dashboard", adminController.displayAdminDashboard);
+
+export default router;
 </code></pre>
         </article>
     </section>
