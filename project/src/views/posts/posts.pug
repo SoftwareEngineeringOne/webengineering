@@ -10,7 +10,7 @@ block content
             .post
                 h2=post.title
                 p.post-content-preview=post.content
-                a(href=`/posts/${post.id}`) Read more
+                a(href=`/posts/p/${post.id}`) Read more
                 p
                     | Posted by #{post.author} on #{post.createdAt}
     if session.loggedIn
