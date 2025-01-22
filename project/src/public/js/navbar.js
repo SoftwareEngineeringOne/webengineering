@@ -1,13 +1,15 @@
 console.log("navbar.js script loaded");
 
-document.querySelector("#logout-link").addEventListener("click", async (event) => {
+document
+  .querySelector("#logout-link")
+  .addEventListener("click", async (event) => {
     event.preventDefault();
     const response = await fetch("/auth/logout", {
-        method: "POST",
+      method: "POST",
     });
     if (response.ok) {
-        window.location.href = "/";
+      window.location.href = "/";
     } else {
-        console.error("Failed to log out");
+      console.error("Failed to log out");
     }
-})
+  });

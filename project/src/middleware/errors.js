@@ -6,15 +6,15 @@
  * @param next
  */
 export function errorHandler(err, req, res, next) {
-    console.error("Error:", err.message);
+  console.error("Error:", err.message);
 
-    const statusCode = err.status || 500;
+  const statusCode = err.status || 500;
 
-    res.status(statusCode).render('error', {
-        title: 'Error',
-        message: err.message,
-        error: process.env.NODE_ENV === 'development' ? err : {},
-    });
+  res.status(statusCode).render("error", {
+    title: "Error",
+    message: err.message,
+    error: process.env.NODE_ENV === "development" ? err : {},
+  });
 }
 
 /**
@@ -24,7 +24,7 @@ export function errorHandler(err, req, res, next) {
  * @param next
  */
 export function notFoundHandler(req, res, next) {
-    const err = new Error('Not Found');
-    err.status = 404;
-    next(err);
+  const err = new Error("Not Found");
+  err.status = 404;
+  next(err);
 }

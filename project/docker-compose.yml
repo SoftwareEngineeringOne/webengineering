@@ -1,11 +1,10 @@
-version: '3.8'
+version: "3.8"
 name: webengineering-project
 services:
   nodejs:
     image: definitelynotsimon13/webengineering:deploy
     environment:
       NODE_ENV: "production"
-
 
   nginx:
     image: definitelynotsimon13/nginx:latest

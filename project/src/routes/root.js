@@ -1,4 +1,4 @@
-import {homeController} from "../controllers/home/homeController.js";
+import { homeController } from "../controllers/home/homeController.js";
 import express from "express";
 
 /**
@@ -30,9 +30,9 @@ router.get("/", homeController.getHomepage);
  * @param {function} next - The next middleware function.
  */
 router.get("/error", (req, res, next) => {
-    const err = new Error("This is a test error");
-    err.status = 500;
-    next(err);
+  const err = new Error("This is a test error");
+  err.status = 500;
+  next(err);
 });
 
 /**
@@ -45,7 +45,7 @@ router.get("/error", (req, res, next) => {
  * @param {express.Response} res - The response object.
  */
 router.all("/login", (req, res) => {
-    res.redirect("/auth/login");
+  res.redirect("/auth/login");
 });
 
 /**
@@ -58,7 +58,7 @@ router.all("/login", (req, res) => {
  * @param {express.Response} res - The response object.
  */
 router.all("/register", (req, res) => {
-    res.redirect("/auth/register");
+  res.redirect("/auth/register");
 });
 
 export default router;

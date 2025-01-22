@@ -1,7 +1,7 @@
 import express from "express";
-import {registerController} from "../controllers/auth/registerController.js";
-import {loginController} from "../controllers/auth/loginController.js";
-import {logoutController} from "../controllers/auth/logoutController.js";
+import { registerController } from "../controllers/auth/registerController.js";
+import { loginController } from "../controllers/auth/loginController.js";
+import { logoutController } from "../controllers/auth/logoutController.js";
 
 /**
  * @module routes/auth
@@ -64,6 +64,5 @@ router.post("/register", registerController.handlePostRequest);
  * @param {express.Response} res - The response object.
  */
 router.post("/logout", logoutController.handlePostRequest);
-
 
 export default router;

@@ -9,31 +9,31 @@ import app from "../app.js";
  * @param next
  */
 export const sessionMiddleware = (req, res, next) => {
-    console.log("Sessions: ", app.locals.sessions);
+  console.log("Sessions: ", app.locals.sessions);
 
-    const sessionId = req.cookies.sessionId;
-    let session;
+  const sessionId = req.cookies.sessionId;
+  let session;
 
-    if (!sessionId || !app.locals.sessions[sessionId]) {
-        const newSessionId = generateSessionId();
-        session = new Session(newSessionId);
+  if (!sessionId || !app.locals.sessions[sessionId]) {
+    const newSessionId = generateSessionId();
+    session = new Session(newSessionId);
 
-        res.cookie("sessionId", newSessionId, {path: "/", httpOnly: true});
-        app.locals.sessions[newSessionId] = session;
-    } else {
-        session = app.locals.sessions[sessionId];
-    }
+    res.cookie("sessionId", newSessionId, { path: "/", httpOnly: true });
+    app.locals.sessions[newSessionId] = session;
+  } else {
+    session = app.locals.sessions[sessionId];
+  }
 
-    req.session = session;
-    res.locals.session = session;
+  req.session = session;
+  res.locals.session = session;
 
-    next();
-}
+  next();
+};
 
 /**
  * Generates a new session ID.
  * @returns {string} A new session ID.
  */
 function generateSessionId() {
-    return crypto.randomBytes(16).toString("hex");
+  return crypto.randomBytes(16).toString("hex");
 }
