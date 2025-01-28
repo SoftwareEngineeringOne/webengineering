@@ -5,26 +5,19 @@ import { protectedMiddleware } from "../middleware/protected.js"
 
 const router = express.Router();
 
-const roleMiddleware = protectedMiddleware.roleProtection([Roles.ADMIN, Roles.AUTHOR])
-
-router.use("/new", roleMiddleware); 
-router.get("/new", PostController.displayForm);
-
+//Public Routes
 router.get("/", PostController.displayAllPosts);
+router.get("/p/:id", PostController.displayPostWithId);
 
-router.get("/:id", PostController.displayPostWithId);
-
-router.use("/:id/edit", roleMiddleware)
+// Protected Routes
+router.use(protectedMiddleware.roleProtection([Roles.ADMIN, Roles.AUTHOR])); 
+router.get("/new", PostController.displayForm);
 router.get("/:id/edit", PostController.displayForm);
-router.post("/:id/edit", roleMiddleware)
 
-router.post("/:id", roleMiddleware); 
-router.post("/:id", PostController.updatePost);
-router.post("/", roleMiddleware);
 router.post("/", PostController.createPost);
+// Using Put would be nicer, but doesnt really work with html forms
+router.post("/:id", PostController.updatePost);
 
-
-router.delete("/:id", roleMiddleware)
 router.delete("/:id");
 
 export default router;
