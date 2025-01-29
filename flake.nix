@@ -21,6 +21,10 @@
             nginx
             nodejs
           ];
+
+          shellHook = ''
+            export PATH=$PATH:$HOME/go/bin
+          '';
         };
       }
     );

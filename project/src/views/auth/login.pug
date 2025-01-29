@@ -4,12 +4,17 @@ block scripts
     script(src="/js/login.js" type="module")
 
 block content
-    .auth-form
-        .card
-            h1 Login
-            form(action="/auth/login" id="login-form" method="POST")
-                label(for="username") Username:
-                input#username(name="username" required type="text")
-                label(for="password") Password:
-                input#password(name="password" required type="password")
-                button(type="submit") Submit
+  .auth-container
+    .auth-card.card
+      h1.text-center.mt-md Welcome Back
+      form(action="/auth/login", method="POST")
+        .form-group
+          label(for="username") Username
+          input#username(type="text", name="username", required)
+        .form-group
+          label(for="password") Password
+          input#password(type="password", name="password", required)
+        button.button.w-full(type="submit") Sign In
+      .text-center
+        span Don't have an account?
+        a(href="/auth/register") Register

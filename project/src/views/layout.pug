@@ -1,24 +1,24 @@
 doctype html
 html(lang="en")
-    head
-        meta(charset="UTF-8")
-        block icon
-            link(href="/img/favicon.ico" rel="icon")
-        block title
-            title Welcome
-        block stylesheets
-            link(href="/css/styles.css" rel="stylesheet")
-        block scripts
-            script(src="/js/default.js" type="module")
-    body
-        .all
-            block navbar
-                .navbar
-                    include components/navbar
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    link(
+      rel="stylesheet",
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+    )
+    block title
+      title Project Starter
+    block stylesheets
+      link(rel="stylesheet", href="/css/styles.css")
+    block scripts
+      script(src="/js/main.js", type="module")
 
-            main
-                block content
+  body
+    .all
+      include components/header.pug
 
-            block footer
-                footer
-                    p this is a footer
+      main
+        block content
+    
+      include components/footer.pug
