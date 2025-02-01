@@ -1,0 +1,28 @@
+<!ELEMENT vorlesungsplan (semester+)>
+<!ELEMENT semester (sem_titel, kalenderwochen+)>
+<!ELEMENT sem_titel (#PCDATA)>
+<!ELEMENT kalenderwochen (kalenderwoche+)>
+<!ELEMENT kalenderwoche (vorlesungen)>
+<!ELEMENT vorlesungen (vorlesung+)>
+<!ELEMENT vorlesung (vor_titel,dozent,startzeit,endzeit,kurse,räume)>
+<!ELEMENT vor_titel (#PCDATA)>
+<!ELEMENT dozent (#PCDATA)>
+<!ELEMENT startzeit (#PCDATA)>
+<!ELEMENT endzeit (#PCDATA)>
+<!ELEMENT kurse (kurs+)>
+<!ELEMENT räume (raum+)>
+<!ELEMENT kurs (#PCDATA)>
+<!ELEMENT raum (#PCDATA)>
+
+<!ATTLIST semester
+    laufendes   (true | false)  #REQUIRED
+>
+<!ATTLIST sem_titel 
+    hälfte      (erste | zweite)    #REQUIRED
+>
+<!ATTLIST kalenderwoche
+    nummer      ID              #REQUIRED
+>
+<!ATTLIST vorlesung
+    wochentag   (Montag | Dienstag | Mittwoch | Donnerstag | Freitag | Samstag) #REQUIRED
+>

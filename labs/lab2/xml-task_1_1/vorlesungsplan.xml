@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE vorlesungsplan SYSTEM "vorlesungsplan.dtd">
+
+<vorlesungsplan>
+    <semester laufendes="true">
+        <sem_titel hälfte="zweite">Wintersemester 2024/2025</sem_titel>
+        <kalenderwochen>
+            <kalenderwoche nummer="KW5">
+                <vorlesungen>
+                    <vorlesung wochentag="Montag">
+                        <vor_titel>Mathematik II Statistik</vor_titel>
+                        <dozent>Oettinger, M.</dozent>
+                        <startzeit>8:00</startzeit>
+                        <endzeit>10:30</endzeit>
+                        <kurse>
+                            <kurs>TIK23</kurs>
+                            <kurs>TIT23</kurs>
+                        </kurse>
+                        <räume>
+                            <raum>N117</raum>
+                            <raum>N118</raum>
+                        </räume>
+                    </vorlesung>
+                    <vorlesung wochentag="Montag">
+                        <vor_titel>Betriebssysteme (Techn. Informatik 2)</vor_titel>
+                        <dozent>Maier, A.</dozent>
+                        <startzeit>12:30</startzeit>
+                        <endzeit>16:30</endzeit>
+                        <kurse>
+                            <kurs>TIK23</kurs>
+                            <kurs>TIT23</kurs>
+                        </kurse>
+                        <räume>
+                            <raum>N117</raum>
+                            <raum>N118</raum>
+                        </räume>
+                    </vorlesung>
+                    <vorlesung wochentag="Dienstag">
+                        <vor_titel>Web Engineering I</vor_titel>
+                        <dozent>Schneider, J.</dozent>
+                        <startzeit>10:45</startzeit>
+                        <endzeit>13:15</endzeit>
+                        <kurse>
+                            <kurs>TIT23</kurs>
+                        </kurse>
+                        <räume>
+                            <raum>N117</raum>
+                            <raum>N118</raum>
+                        </räume>
+                    </vorlesung>
+                    <vorlesung wochentag="Dienstag">
+                        <vor_titel>Systemnahe Programmierung 2</vor_titel>
+                        <dozent>Vogt, T.</dozent>
+                        <startzeit>14:00</startzeit>
+                        <endzeit>17:15</endzeit>
+                        <kurse>
+                            <kurs>TIT23</kurs>
+                        </kurse>
+                        <räume>
+                            <raum>N117</raum>
+                            <raum>N118</raum>
+                        </räume>
+                    </vorlesung>
+                    <vorlesung wochentag="Mittwoch">
+                        <vor_titel>Web Engineering</vor_titel>
+                        <dozent>Schneider, J.</dozent>
+                        <startzeit>10:45</startzeit>
+                        <endzeit>13:15</endzeit>
+                        <kurse>
+                            <kurs>TIT23</kurs>
+                        </kurse>
+                        <räume>
+                            <raum>N117</raum>
+                            <raum>N118</raum>
+                        </räume>
+                    </vorlesung>
+                </vorlesungen>
+            </kalenderwoche>
+        </kalenderwochen>
+    </semester>
+</vorlesungsplan>
