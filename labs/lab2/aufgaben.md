@@ -14,4 +14,17 @@ Bsp.:
 In diesem Beispiel wird dem namespace von "www.example.com/x" der Präfix x gegeben. Von nun an können Elemente aus diesem Namespace mit x genutzt werden.
 
 
-## 2.
+# 2.2 UTF-8, UTF-16, UTF-32 Encoding von Zeichen
+
+## 4. Optimale Encodings
+| Region der Sprache | Optimales Encoding |
+| ------------------ | ------------------ |
+| Europa             | UTF-8              |
+| Asien              | UTF-16             |
+
+## 5. Begriffserklärung Glyphe
+Eine Glyphe ist die visuelle Darstellung eines Zeichens oder Symbols in einem Schriftsystem. Sie beschreibt, wie ein Zeichen aussieht, abhängig von Schriftart, Stil und Kontext. \
+Z.B. Das 'A' in "Arial" und in "Times New Roman"
+
+## 6. Zeichenausgabe im Terminal
+Ja, die Zeichen können ausgegeben werden, da das Terminal in diesem Fall UTF-8-Encoding verwendet (Umgebungsvariable: `LANG=en_US.UTF-8`)
