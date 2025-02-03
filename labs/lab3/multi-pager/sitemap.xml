@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+    <url>
+        <loc>http://localhost/goal.html</loc>
+        <lastmod>2025-02-03</lastmod>
+        <priority>1.0</priority>
+        <changefreq>yearly</changefreq>
+    </url>
+    <url>
+        <loc>http://localhost/index.html</loc>
+        <lastmod>2025-02-03</lastmod>
+        <priority>0.8</priority>
+        <changefreq>never</changefreq>
+    </url>
+        <url>
+        <loc>http://localhost/software.html</loc>
+        <lastmod>2025-02-03</lastmod>
+        <priority>0.9</priority>
+        <changefreq>monthly</changefreq>
+    </url>
+        <url>
+        <loc>http://localhost/state.html</loc>
+        <lastmod>2025-02-03</lastmod>
+        <priority>0.7</priority>
+        <changefreq>weekly</changefreq>
+    </url>
+        <url>
+        <loc>http://localhost/team.html</loc>
+        <lastmod>2025-02-03</lastmod>
+        <priority>0.3</priority>
+        <changefreq>yearly</changefreq>
+    </url>
+…
+</urlset>

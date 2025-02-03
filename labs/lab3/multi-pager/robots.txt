@@ -1,0 +1,10 @@
+User-agent: Bingbot
+Disallow: /
+
+User-agent: Googlebot
+Disallow: /team.html
+
+User-agent: *
+Allow: /
+
+Sitemap: https://www.example.com/sitemap.xml

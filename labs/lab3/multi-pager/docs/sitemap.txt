@@ -1,0 +1,20 @@
+multi-pager/
+├── audio
+│   └── never-gonna-give-you-up.webm
+├── css
+│   └── style.css
+├── docs
+│   ├── kompositionsdiagramm.odg
+│   └── sitemap.txt
+├── goal.html
+├── img
+│   ├── person.png
+│   └── platzhalter.png
+├── index.html
+├── robots.txt
+├── sitemap.xml
+├── software.html
+├── state.html
+├── team.html
+└── video
+    └── placeholder.mov
