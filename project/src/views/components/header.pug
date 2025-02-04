@@ -5,7 +5,7 @@ nav
     .nav-links
       a(href="/") Home
       a(href="/posts") Posts
-      if !session.loggedIn
+      if session.user === undefined
         a.button.call-to-action(href="/auth/register") Get Started
       else
         a(href="/profile")= session.user.username

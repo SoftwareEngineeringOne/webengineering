@@ -1,5 +1,6 @@
 export const homeController = {
   getHomepage: async (req, res) => {
+    console.log("Hello" + req.session);
     try {
       res.render("index");
     } catch (err) {

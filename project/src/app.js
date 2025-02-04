@@ -1,4 +1,5 @@
 import express from "express";
+import session from "express-session";
 import path from "node:path";
 import rootRouter from "./routes/root.js";
 import authRouter from "./routes/auth.js";
@@ -30,8 +31,6 @@ console.log(`Running in ${process.env.NODE_ENV} mode`);
 
 const PORT = process.env.PORT || 3000;
 
-app.locals.sessions = {};
-
 app.set("views", path.join("src", "views"));
 app.set("view engine", "pug");
 
@@ -40,6 +39,11 @@ app.use(loggerMiddleware);
 app.use(express.static(path.join("src", "public")));
 
 app.use(cookieMiddleware);
+app.use(session({
+  secret: 'unsafe',
+  resave: false,
+  saveUninitialized: false,
+}))
 app.use(sessionMiddleware);
 
 app.use(express.json());

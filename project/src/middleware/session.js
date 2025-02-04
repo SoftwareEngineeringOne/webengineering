@@ -1,5 +1,4 @@
 import crypto from "node:crypto";
-import Session from "../models/session.js";
 import app from "../app.js";
 
 /**
@@ -11,21 +10,7 @@ import app from "../app.js";
 export const sessionMiddleware = (req, res, next) => {
   console.log("Sessions: ", app.locals.sessions);
 
-  const sessionId = req.cookies.sessionId;
-  let session;
-
-  if (!sessionId || !app.locals.sessions[sessionId]) {
-    const newSessionId = generateSessionId();
-    session = new Session(newSessionId);
-
-    res.cookie("sessionId", newSessionId, { path: "/", httpOnly: true });
-    app.locals.sessions[newSessionId] = session;
-  } else {
-    session = app.locals.sessions[sessionId];
-  }
-
-  req.session = session;
-  res.locals.session = session;
+  res.locals.session = req.session;
 
   next();
 };
