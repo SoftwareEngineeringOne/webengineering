@@ -1,0 +1,22 @@
+title[font="TITLE_1"] {
+    font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+    font-weight: 700;
+}
+
+content {
+    font-family: "Times New Roman", Times, serif;
+    display:block; 
+    white-space:pre;
+}
+
+bold {
+    font-weight: 700;
+}
+
+italic {
+    font-style: italic;
+}
+
+underline {
+    text-decoration: underline 
+}
