@@ -1,0 +1,14 @@
+<!ELEMENT text (section+)>
+<!ELEMENT section (title?, content)>
+<!ELEMENT title (#PCDATA)>
+<!ELEMENT content (#PCDATA | bold | italic | underline)*>
+<!ELEMENT bold (#PCDATA)>
+<!ELEMENT italic (#PCDATA)>
+<!ELEMENT underline (#PCDATA)>
+
+<!ATTLIST title 
+    font CDATA #IMPLIED
+>
+<!ATTLIST content 
+    font CDATA #IMPLIED
+>
