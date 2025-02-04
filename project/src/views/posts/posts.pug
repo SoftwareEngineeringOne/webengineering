@@ -4,20 +4,13 @@ block scripts
     script(src="/js/posts.js" type="module")
 
 block content
-  main.container
-    .post-header
-      h1 Latest Posts
-      if session.loggedIn
-        if session.user.role === 'admin' || session.user.role === 'author'
-          a.button.call-to-action(href="/posts/new") New Post
+    main.container
+        .post-header
+            h1 Latest Posts
+            if session.loggedIn
+                if session.user.role === 'admin' || session.user.role === 'author'
+                    a.button.call-to-action(href="/posts/new") New Post
 
-    .posts-grid
-      each post in posts
-        article.card.post-card
-          h2
-            a(href=`/posts/p/${post.id}` style="color: inherit")= post.title
-          .post-meta
-            span By #{ post.author }
-            span= post.createdAt.toLocaleDateString()
-          p.post-content-preview= post.content
-          a.button(href=`/posts/p/${post.id}`) Read More
+        .posts-grid
+            each post in posts
+                include ../components/postPreview.pug

@@ -1,12 +1,12 @@
 nav
-  .navbar
-    .logo
-      span LOGO Episkos
-    .nav-links
-      a(href="/") Home
-      a(href="/posts") Posts
-      if session.user === undefined
-        a.button.call-to-action(href="/auth/register") Get Started
-      else
-        a(href="/profile")= session.user.username
-        a.button(href="/logout") Logout
+    .navbar
+        .logo
+            span LOGO Episkos
+        .nav-links
+            a(href="/") Home
+            a(href="/posts") Posts
+            if session.user === undefined
+                a.button.call-to-action(href="/auth/register") Get Started
+            else
+                a(href=`/profile/${session.user.username}`)= session.user.username
+                a.button(href="/logout") Logout
