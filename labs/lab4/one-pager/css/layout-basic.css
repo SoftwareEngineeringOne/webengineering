@@ -1,0 +1,149 @@
+/* --- General --- */
+
+body {
+	margin: 0;
+	font-family: Arial, sans-serif;
+}
+
+main{
+	width: 86%;
+	float: left;
+	margin: 0;
+	padding: 0;
+	display: inline;
+	padding-top: 10%;
+	padding-left: 13%;
+	background-color: rgb(255, 255, 255);
+  }
+
+section
+{
+	padding: 10px;
+	/* max-width: 100vw; */
+}
+
+footer {
+	width: 86%;
+	padding-top: 0%;
+	padding-left: 13%;
+}
+
+img {
+	max-width: 100%;
+}
+
+table td {
+	vertical-align: top;
+}
+
+/* --- Headbar --- */
+.headbar {
+	height: 10%; /* Full-height */
+    width: 100%; /* Set the width of the sidebar */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    top: 0; /* Stay at the top */
+    left: 0;
+    background-color: #ff8d36; /* Black */
+    padding-top: 0px; /* Padding */
+	padding-left: 2%;
+}
+
+/* --- Navbar --- */
+
+.navbar {
+	background-color: black;
+	height: 90%; /* Full-height */
+    width: 10%; /* Set the width of the sidebar */
+    position: fixed; /* Stay in place */
+    z-index: 2; /* Sit on top */
+    top: 10%; /* Stay at the top */
+    left: 0;
+    background-color: #111; /* Black */
+    padding-top: 2%; /* Padding */
+	padding-left: 2%;
+}
+
+.navbar ul {
+	/* display: flex; */
+	justify-content: center;
+	/* width: 90vh; */
+	padding: 0;
+}
+
+.navbar ul li {
+	margin: 20px 0%;
+	list-style-type: none;
+
+}
+
+.navbar ul li a {
+	color: white;
+	text-decoration: none;
+	font-weight: bold;
+}
+
+.navbar ul li a:hover {
+	color: green;
+}
+
+/* --- FAB --- */
+
+.fab {
+	position: fixed;
+	top: 90%;
+	left: 90%;
+	background-color: pink;
+	padding: 15px;
+	border-radius: 10px;
+	border: 1px solid black;
+}
+
+.fab:hover {
+	background-color: blue;
+	cursor: pointer;
+	border: none;
+}
+
+.fab a {
+	color: black;
+}
+
+/* --- Main Table --- */
+.maincol {
+	width: 80%;
+	padding-right: 1%;
+}
+
+.sidecol {
+	width: 20%;
+	padding-left: 1%;
+	border-left: 3px dashed rgb(80, 80, 80);
+}
+
+
+
+/* --- Team --- */
+.team table {
+	/* width: 90vw; */
+}
+
+.team td {
+	text-align: center;
+}
+
+.team img {
+	/* width: 20vw; */
+}
+
+/* -- Goal -- */
+.responsive-video {
+	width: 90vw;
+	height: auto;
+	max-width: 100%;
+}
+
+/* --- Imprint --- */
+.imprint {
+	background-color: lightgray;
+}
