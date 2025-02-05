@@ -1,10 +1,10 @@
-import Post from "../../models/post.js";
+import Post, { Status } from "../../models/post.js";
 import { Roles } from "../../models/user.js";
 
 export const PostController = {
-  displayAllPosts: async (req, res) => {
+  displayPublicPosts: async (req, res) => {
     try {
-      const posts = await Post.getAll();
+      const posts = await Post.getPublic();
       res.render("posts/posts", { posts });
     } catch (err) {
       console.error(err);
@@ -44,11 +44,6 @@ export const PostController = {
   },
 
   createPost: async (req, res) => {
-    if (!req.session.loggedIn) {
-      res.writeHead(403, { "Content-Type": "text/plain" });
-      res.end("Forbidden");
-      return;
-    }
     const { title, content } = req.body;
     try {
       let post = new Post(title, content, req.session.user.username);
@@ -65,9 +60,7 @@ export const PostController = {
   },
 
   updatePost: async (req, res) => {
-    if (!req.params.id) {
-      res.writeHead(400, { "Content-Type": "text/plain" });
-      res.end("Bad Request");
+    if (!ensureId(req, res)) {
       return;
     }
 
@@ -87,7 +80,7 @@ export const PostController = {
 
     const { title, content } = req.body;
     try {
-      post.update(title, content);
+      await post.update(title, content);
       res.writeHead(200, { "Content-Type": "text/plain" });
       res.end("Post updated successfully");
     } catch (err) {
@@ -96,4 +89,77 @@ export const PostController = {
       res.end("Internal Server Error");
     }
   },
+
+  //!TODO Protect with middleware
+  publishPost: async (req, res) => {
+    await changePostStatus(req, res, Status.PUBLISHED);
+  },
+
+  //!TODO Protect with middleware
+  archivePost: async (req, res) => {
+    await changePostStatus(req, res, Status.ARCHIVED);
+  },
+
+  //!TODO Protect with middleware
+  deletePost: async (req, res) => {
+    if (!ensureId(req, res)) {
+      return;
+    }
+
+    const post = await Post.getWithId(req.params.id);
+    if (!post) {
+      res.writeHead(404, { "Content-Type": "text/plain" });
+      res.end("Post not found");
+      return;
+    }
+
+    try {
+      await post.delete();
+      res.writeHead(200, { "Content-Type": "text/plain" });
+      res.end("Post deleted successfully");
+    } catch (err) {
+      console.error(err);
+      res.writeHead(500, { "Content-Type": "text/plain" });
+      res.end("Internal Server Error");
+    }
+  },
 };
+
+/**
+ *
+ * @param req
+ * @param res
+ * @param {Status} status
+ * @returns {Promise<void>}
+ */
+async function changePostStatus(req, res, status) {
+  if (!ensureId(req, res)) {
+    return;
+  }
+
+  const post = await Post.getWithId(req.params.id);
+  if (!post) {
+    res.writeHead(404, { "Content-Type": "text/plain" });
+    res.end("Post not found");
+    return;
+  }
+
+  try {
+    await post.changeStatus(status);
+    res.writeHead(200, { "Content-Type": "text/plain" });
+    res.end("Post published successfully");
+  } catch (err) {
+    console.error(err);
+    res.writeHead(500, { "Content-Type": "text/plain" });
+    res.end("Internal Server Error");
+  }
+}
+
+function ensureId(req, res) {
+  if (!req.params.id) {
+    res.writeHead(400, { "Content-Type": "text/plain" });
+    res.end("Bad Request");
+    return false;
+  }
+  return true;
+}

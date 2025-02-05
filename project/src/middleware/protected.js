@@ -1,9 +1,12 @@
 export const protectedMiddleware = {
   roleProtection: (allowedRoles) => {
     return (req, res, next) => {
-      if (!req.session.loggedIn) {
-        if (req.method == "GET") {
-          res.redirect("/auth/login");
+      if (!req.session.user) {
+        if (req.method === "GET") {
+          const next = req.originalUrl
+            ? `?next=${encodeURIComponent(req.originalUrl)}`
+            : "";
+          res.redirect("/auth/login" + next);
         } else {
           next({ status: 401, message: "Unauthorized" });
         }

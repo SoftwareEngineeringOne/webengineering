@@ -34,3 +34,13 @@ export const passwordEncryptModifier = async (data) => {
     .map((b) => b.toString(16).padStart(2, "0"))
     .join("");
 };
+
+/**
+ *
+ * @parama {Window} window
+ */
+export function gotoNextOrRoot(window) {
+  const params = new URLSearchParams(window.location.search);
+  const nextUrl = params.get("next") || "/";
+  window.location.assign(nextUrl);
+}

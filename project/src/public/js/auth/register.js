@@ -1,10 +1,11 @@
 import {
   addSubmitListener,
+  gotoNextOrRoot,
   passwordEncryptModifier,
   sendFormAsJson,
-} from "./utils.js";
+} from "../utils.js";
 
-console.log("login.js script loaded");
+console.log("register.js script loaded");
 
 addSubmitListener("register-form", async (event) => {
   try {
@@ -12,7 +13,7 @@ addSubmitListener("register-form", async (event) => {
       passwordEncryptModifier,
     ]);
     if (response.ok) {
-      window.location.assign("/");
+      gotoNextOrRoot(window);
     } else {
       console.error("Failed to log in");
     }
