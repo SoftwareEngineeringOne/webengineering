@@ -1,16 +1,17 @@
 extends ../layout
 
 block scripts
-  script(src="/js/posts.js", type="module")
+    script(src="/js/posts.js", type="module")
 
 block content
-  main.container
-    .post-header
-      h1 Latest Posts
-      if session.loggedIn
-        if session.user.role === 'admin' || session.user.role === 'author'
-          a.button.call-to-action(href="/posts/new") New Post
+    main.post-container
+        .post-header
+            h1 Latest Posts
+            if session.loggedIn
+                if session.user.role === 'admin' || session.user.role === 'author'
+                    a.button.call-to-action(href="/posts/new") New Post
 
-    .posts-grid
-      each post in posts
-        include ../components/postPreview.pug
+        .flex-grid
+            .posts-grid
+                each post in posts
+                    include ../components/postPreview.pug
