@@ -24,7 +24,7 @@ main {
 }
 
 main div {
-	flex: 1
+	flex: 1;
 }
 
 table td {
@@ -81,41 +81,43 @@ table td {
 	color: green;
 }
 
-/* --- FAB --- */
 
-.fab {
-	position: fixed;
-	top: 90%;
-	left: 90%;
-	background-color: pink;
-	padding: 15px;
-	border-radius: 10px;
-	border: 1px solid black;
-}
-
-.fab:hover {
-	background-color: blue;
-	cursor: pointer;
-	border: none;
-}
-
-.fab a {
-	color: black;
-}
 
 .innercontainer {
 	display: flex;
-	max-width: 100vw;
+	/*max-width: 100vw;*/
 	flex-direction: row;
 	flex-wrap: wrap;
 	padding-left: 8%;
 }
 
+.innercontainer img {
+	object-fit: cover;
+}
+
+.innercontainer div {
+	flex: 1;
+}
+
+
+
+
 
 
 /* --- Team --- */
+.team {
+	left: 0%;
+	width: 80%;
+}
+
+.team div {
+	flex: 1;
+}
+
 .team table {
-	/* width: 90vw; */
+	/*position: fixed;*/
+	/*width: 90vw;*/
+	/*left: 0;*/
 }
 
 .team td {
@@ -123,7 +125,7 @@ table td {
 }
 
 .team img {
-	/* width: 20vw; */
+	width: 20vw;
 }
 
 /* -- Goal -- */
