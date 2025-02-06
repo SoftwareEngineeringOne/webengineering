@@ -141,32 +141,24 @@ form {
     }
 
     input::placeholder {
+        color: transparent;
         transition: opacity 0.3s ease;
     }
 
-    .form-input:not(:focus-within) {
-
-        /*label {*/
-        /*    display: none;*/
-        /*}*/
-    }
-
+    .form-input:has(input:not(:placeholder-shown)),
     .form-input:focus-within {
         label {
             color: black;
             transform: translateY(-100%);
         }
-
     }
+
 
     input:focus {
         border-color: var(--color-primary);
         outline: none;
     }
 
-    input:focus::placeholder {
-        color: transparent;
-    }
 
 }
 
