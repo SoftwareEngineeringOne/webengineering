@@ -1,0 +1,128 @@
+/* Standard-Stile für mobile Geräte */
+@media (max-width: 600px) {
+    body {
+        font-size: 16px;
+    }
+
+    main {
+        padding-top: 14%;
+        padding-left: 4rem;
+        max-width: 100vw;
+    }
+
+    section {
+        padding: 10px;
+        max-width: 300px;
+    }
+
+    footer {
+        width: 86%;
+        padding-top: 0%;
+        padding-left: 28%;
+        z-index: 4;
+    }
+
+    img {
+        max-width: 100%;
+        min-width: 20vmax;
+        width: 100vw;
+    }
+}
+
+
+
+/* Breakpoint für Tablets */
+@media (min-width: 600px) {
+    body {
+        font-size: 18px; /* Größere Schriftgröße für Tablets */
+    }
+
+    main {
+        padding-top: 6rem;
+        padding-left: 5rem;
+        max-width: 100vw;
+    }
+    
+    section {
+        padding: 10px;
+        max-width: 300px;
+    }
+    
+    footer {
+        width: 86%;
+        padding-top: 0%;
+        padding-left: 6rem;
+        z-index: 4;
+    }
+    
+    img {
+        max-width: 100%;
+        min-width: 20vmax;
+        width: 100vw;
+    }
+}
+
+
+
+/* Breakpoint für Desktops */
+@media (min-width: 900px) {
+    body {
+        font-size: 20px; /* Noch größere Schriftgröße für Desktops */
+    }
+
+    main {
+        padding-top: 10%;
+        padding-left: 5rem;
+        /*max-width: 100vw;*/
+    }
+    
+    section {
+        padding: 10px;
+        max-width: 300px;
+    }
+    
+    footer {
+        /*width: 100%;
+        padding-top: 0%;
+        padding-left: 1%;*/
+    }
+    
+    img {
+        max-width: 100%;
+        min-width: 20vmax;
+        width: 100vw;
+    }
+}
+
+
+
+/* Breakpoint für große Bildschirme */
+@media (min-width: 1200px) {
+    body {
+        font-size: 22px; /* Größte Schriftgröße für große Bildschirme */
+    }
+
+    main {
+        padding-top: 10%;
+        padding-left: 10%;
+        max-width: 100vw;
+    }
+    
+    section {
+        padding: 10px;
+        max-width: 300px;
+    }
+    
+    footer {
+        width: 86%;
+        padding-top: 0%;
+        padding-left: 13%;
+        z-index: 4;
+    }
+    
+    img {
+        max-width: 100%;
+        min-width: 20vmax;
+        width: 100vw;
+    }
+}
