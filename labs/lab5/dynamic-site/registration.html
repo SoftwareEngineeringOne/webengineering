@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Labor 5 - Registrierung</title>
+    <link rel="stylesheet" href="css/logins.css">
+</head>
+
+<body>
+
+    <div class="login-container">
+        <h2>Login</h2>
+        <form id="loginForm">
+            <input type="text" id="first-name" placeholder="Vorname" required>
+            <input type="text" id="last-name" placeholder="Nachname" required>
+            <input type="text" id="username" placeholder="Benutzername" required>
+            <input type="password" id="password" placeholder="Passwort" required>
+            <label for="male">Männlich</label>
+            <input type="radio" id="male" name="gender" value="male" checked>
+            
+            <label for="female">Weiblich</label>
+            <input type="radio" id="female" name="gender" value="female">
+            
+            <label for="topic">Wähle eine Interessenskategorie</label>
+            <select name="topic" id="topic">
+              <option value="html">HTML5</option>
+              <option value="css">CSS</option>
+              <option value="js">JavaScript</option>
+              <option value="flexbox">FlexBox</option>
+              <option value="gridbox">GridBox</option>
+            </select> 
+            <input type="text" id="comments" placeholder="Kommentare" required>
+            <label for="conditions"> Ich akzeptiere die Nutzungsbedingungen</label>
+            <input type="checkbox" id="conditions" name="conditions_accepted" value="true">
+            
+            <button type="submit">Registrieren</button>
+        </form>
+        <p id="message" style="color: red;"></p>
+    </div>
+
+    <script src="js/register.js"></script>
+
+</body>
+
+</html>
