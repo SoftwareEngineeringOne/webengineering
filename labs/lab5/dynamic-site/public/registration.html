@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="de">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,29 +12,29 @@
 
     <div class="login-container">
         <h2>Login</h2>
-        <form id="loginForm">
+        <form id="registerForm" method="POST" action="/register">
             <input type="text" id="first-name" placeholder="Vorname" maxlength="20" required>
             <input type="text" id="last-name" placeholder="Nachname" maxlength="20" required>
             <input type="text" id="username" placeholder="Benutzername" maxlength="20" required>
             <input type="password" id="password" placeholder="Passwort" maxlength="20" minlength="8" required>
             <label for="male">Männlich</label>
             <input type="radio" id="male" name="gender" value="male" checked>
-            
+
             <label for="female">Weiblich</label>
             <input type="radio" id="female" name="gender" value="female">
-            
+
             <label for="topic">Wähle eine Interessenskategorie</label>
             <select name="topic" id="topic">
-              <option value="html">HTML5</option>
-              <option value="css">CSS</option>
-              <option value="js">JavaScript</option>
-              <option value="flexbox">FlexBox</option>
-              <option value="gridbox">GridBox</option>
-            </select> 
+                <option value="html">HTML5</option>
+                <option value="css">CSS</option>
+                <option value="js">JavaScript</option>
+                <option value="flexbox">FlexBox</option>
+                <option value="gridbox">GridBox</option>
+            </select>
             <input type="text" id="comment" placeholder="Kommentar" maxlength="100">
             <label for="conditions"> Ich akzeptiere die Nutzungsbedingungen</label>
             <input type="checkbox" id="conditions" name="conditions_accepted" value="yes">
-            
+
             <button type="submit">Registrieren</button>
         </form>
         <p id="message" style="color: red;"></p>
@@ -44,7 +45,6 @@
     <a href="index.html">Einloggen</a>
 
     <script src="js/register.js"></script>
-
 </body>
 
 </html>
