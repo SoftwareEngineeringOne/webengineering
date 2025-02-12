@@ -7,12 +7,13 @@ const host = "localhost";
 
 const requestListener = (req, res) => {
     console.log("Method: ", req.method);
+    console.log("Url: ", req.url);
     if (req.method == "GET") {
         getHandler(req, res);
-    } else if(req.method == "POST") {
-        if (req.url = "/login") {
+    } else if (req.method == "POST") {
+        if (req.url === "/login") {
             loginHandler(req, res);
-        } else if (req.url = "/register") {
+        } else if (req.url === "/register") {
             registerHandler(req, res);
         }
     }
@@ -27,14 +28,14 @@ function getHandler(req, res) {
     const url = req.url;
     let filePath = './public' + (url === "/" ? '/index.html' : url);
     let ext = path.extname(filePath);
-    if(ext == "") {
+    if (ext == "") {
         filePath += ".html";
         ext = ".html";
     }
 
 
     fs.readFile(filePath, (err, data) => {
-        if (err)  {
+        if (err) {
             console.error(err);
             res.writeHead(404, { 'Content-Type': 'text/html' });
             res.end("<h1>404 Not Found</h1>");
@@ -50,24 +51,74 @@ function getHandler(req, res) {
 
         const contentType = mimeTypes[ext] || 'text/html';
 
-        res.writeHead(200, {'Content-Type': contentType});
+        res.writeHead(200, { 'Content-Type': contentType });
         res.write(data);
         res.end();
     })
 }
 
 function loginHandler(req, res) {
-    res.writeHead(500, {'Content-Type': 'application/json'})
+    res.writeHead(500, { 'Content-Type': 'application/json' })
     const response = {
-        message: "error"
+        message: "login error"
     };
     res.end(JSON.stringify(response));
 }
 
 function registerHandler(req, res) {
-    res.writeHead(500, {'Content-Type': 'application/json'})
-    const response = {
-        message: "error"
-    };
-    res.end(JSON.stringify(response));
+    let body = '';
+
+    req.on('data', chunk => {
+        body += chunk.toString();
+    });
+
+    req.on('end', () => {
+        let data;
+        try {
+            data = JSON.parse(body);
+        } catch (error) {
+            res.writeHead(400, { 'Content-Type': 'application/json' });
+            res.end(JSON.stringify({ message: "Invalid Request" }));
+        }
+
+        const requiredFields = ["first_name", "last_name", "username", "password", "gender", "topic"];
+        const missingFields = requiredFields.filter(field => !data[field]);
+
+        if (missingFields.length > 0) {
+            res.writeHead(400, { 'Content-Type': 'application/json' });
+            return res.end(JSON.stringify({ message: `Missing fields: ${missingFields.join(', ')}` }));
+        }
+
+        const filePath = path.join("./", 'users.json');
+
+        fs.readFile(filePath, 'utf8', (err, fileData) => {
+            let users = [];
+
+            if (!err && fileData) {
+                try {
+                    users = JSON.parse(fileData);
+                } catch (jsonErr) {
+                    users = [];
+                }
+            }
+
+            const existingUser = users.find(user => user.username === data.username);
+            if (existingUser) {
+                res.writeHead(409, { 'Content-Type': 'application/json' });
+                return res.end(JSON.stringify({ message: "Username already exists" }));
+            }
+            users.push(data);
+
+            fs.writeFile(filePath, JSON.stringify(users, null, 2), err => {
+                if (err) {
+                    res.writeHead(500, { 'Content-Type': 'application/json' });
+                    return res.end(JSON.stringify({ message: "Internal Server Error" }));
+                }
+
+                res.writeHead(201, { 'Content-Type': 'application/json' });
+                res.end(JSON.stringify({ message: "User registered successfully" }));
+            });
+        });
+
+    });
 }

@@ -13,15 +13,29 @@
     <div class="login-container">
         <h2>Login</h2>
         <form id="registerForm" method="POST" action="/register">
-            <input type="text" id="first-name" placeholder="Vorname" maxlength="20" required>
-            <input type="text" id="last-name" placeholder="Nachname" maxlength="20" required>
-            <input type="text" id="username" placeholder="Benutzername" maxlength="20" required>
-            <input type="password" id="password" placeholder="Passwort" maxlength="20" minlength="8" required>
-            <label for="male">Männlich</label>
-            <input type="radio" id="male" name="gender" value="male" checked>
+            <input type="text" name="first_name" id="first-name" placeholder="Vorname" maxlength="20" required>
+            <input type="text" name="last_name" id="last-name" placeholder="Nachname" maxlength="20" required>
+            <input type="text" name="username" id="username" placeholder="Benutzername" maxlength="20" required>
+            <input type="password" name="password" id="password" placeholder="Passwort" maxlength="20" minlength="8" required>
 
-            <label for="female">Weiblich</label>
-            <input type="radio" id="female" name="gender" value="female">
+            <h3>Geschlecht</h3>
+            <div class="radio-group">
+                    <div class ="radio-input">
+                        <input type="radio" id="male" name="gender" value="male">
+                        <label for="male">Männlich</label>
+                    </div>
+
+                    <div class ="radio-input">
+                        <input type="radio" id="female" name="gender" value="female">
+                        <label for="female">Weiblich</label>
+                    </div>
+
+                    <div class ="radio-input">
+                        <input type="radio" id="divers" name="gender" value="divers">
+                        <label for="divers">Divers</label>
+                    </div>
+            </div>
+
 
             <label for="topic">Wähle eine Interessenskategorie</label>
             <select name="topic" id="topic">
@@ -31,9 +45,9 @@
                 <option value="flexbox">FlexBox</option>
                 <option value="gridbox">GridBox</option>
             </select>
-            <input type="text" id="comment" placeholder="Kommentar" maxlength="100">
+            <input name="comment" type="text" id="comment" placeholder="Kommentar" maxlength="100">
             <label for="conditions"> Ich akzeptiere die Nutzungsbedingungen</label>
-            <input type="checkbox" id="conditions" name="conditions_accepted" value="yes">
+            <input type="checkbox" id="conditions" value="yes" required>
 
             <button type="submit">Registrieren</button>
         </form>
