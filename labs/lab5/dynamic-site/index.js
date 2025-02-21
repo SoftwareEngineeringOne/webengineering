@@ -25,7 +25,7 @@ server.listen(port, host, () => {
 })
 
 function getHandler(req, res) {
-    const url = req.url;
+    const url = req.url == '/private' ? '/index.html' : req.url;
     let filePath = './public' + (url === "/" ? '/index.html' : url);
     let ext = path.extname(filePath);
     if (ext == "") {
@@ -69,8 +69,8 @@ function loginHandler(req, res) {
         try {
             data = JSON.parse(body);
         } catch (error) {
-            res.writeHead(400, {'Content-Type': 'application/json'});
-            res.end(JSON.stringify({message: "Invalid Request"}));
+            res.writeHead(400, { 'Content-Type': 'application/json' });
+            res.end(JSON.stringify({ message: "Invalid Request" }));
         }
 
         const requiredFields = ["username", "password"];
@@ -78,7 +78,7 @@ function loginHandler(req, res) {
 
         if (missingFields.length > 0) {
             res.writeHead(400, { 'Content-Type': 'application/json' });
-            return res.end(JSON.stringify({ message : `Missing fields: ${missingFields.join(', ')}` }));
+            return res.end(JSON.stringify({ message: `Missing fields: ${missingFields.join(', ')}` }));
         }
 
         const filePath = path.join("./", 'users.json');
@@ -101,10 +101,21 @@ function loginHandler(req, res) {
             }
         })
 
-        const welcomeSite = path.join("./", "welcome.html")
+        const privateSite = path.join(".", "private", "private.html")
 
-        res.writeHead(200, { 'Content-Type': 'application/json' });
-        return res.end(JSON.stringify({ url: welcomeSite }));
+        fs.readFile(privateSite, (err, data) => {
+            if (err) {
+                console.error(err);
+                res.writeHead(404, { 'Content-Type': 'text/html' });
+                res.end("<h1>404 Not Found</h1>");
+                return;
+            }
+
+
+            res.writeHead(200, { 'Content-Type': 'text/html' });
+            res.write(data);
+            res.end();
+        })
     })
 }
 
@@ -129,27 +140,27 @@ function registerHandler(req, res) {
 
         let message = [];
         if (missingFields.length > 0) {
-            message.push(`Missing fields: ${missingFields.join(', ')}` );
+            message.push(`Missing fields: ${missingFields.join(', ')}`);
         }
 
         let regex = /[^A-Za-z0-9-_]/;
         if (regex.test(data.first_name) || regex.test(data.last_name) || regex.test(data.username)) {
-            message.push(`One of the top three inputs has invalid special characters` );
+            message.push(`One of the top three inputs has invalid special characters`);
         }
 
         regex = /[!#_,+\-?]/;
         if (!regex.test(data.password)) {
-            message.push(`Password does not contains of the following symbols: !#,+-_?.` );
+            message.push(`Password does not contains of the following symbols: !#,+-_?.`);
         }
 
         regex = /[0-9]/;
         if (!regex.test(data.password)) {
-            message.push(`Password does not contain a figure` );
+            message.push(`Password does not contain a figure`);
         }
 
         if (message.length !== 0) {
             res.writeHead(400, { 'Content-Type': 'application/json' });
-            return res.end(JSON.stringify({ message : message.join(`<br>`) }));
+            return res.end(JSON.stringify({ message: message.join(`<br>`) }));
         }
 
         const filePath = path.join("./", 'users.json');

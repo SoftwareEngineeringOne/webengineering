@@ -16,15 +16,14 @@ document.getElementById('loginForm').addEventListener('submit', async (event) =>
         }
     });
 
-    const body = await response.json();
-
-    const message = document.getElementById('message');
-
     if (!response.ok) {
+        const body = await response.json();
+        const message = document.getElementById('message');
         message.style.color = 'red';
         message.innerHTML = body.message;
     } else {
-        window.location.href = body.url;
+        const body = await response.text();
+        document.body.innerHTML = body;
+        window.history.pushState('', 'Title', '/private');
     }
-
 });

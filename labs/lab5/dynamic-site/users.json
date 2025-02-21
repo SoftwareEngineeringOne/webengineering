@@ -7,5 +7,14 @@
     "gender": "male",
     "topic": "html",
     "comment": "test123"
+  },
+  {
+    "first_name": "test",
+    "last_name": "test",
+    "username": "test",
+    "password": "test1234!",
+    "gender": "male",
+    "topic": "html",
+    "comment": ""
   }
 ]
