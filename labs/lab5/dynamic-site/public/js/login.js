@@ -22,9 +22,9 @@ document.getElementById('loginForm').addEventListener('submit', async (event) =>
 
     if (!response.ok) {
         message.style.color = 'red';
+        message.innerHTML = body.message;
     } else {
-        message.style.color = 'green';
+        window.location.href = body.url;
     }
-    message.innerHTML = body.message;
 
 });

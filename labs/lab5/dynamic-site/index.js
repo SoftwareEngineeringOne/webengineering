@@ -73,9 +73,6 @@ function loginHandler(req, res) {
             res.end(JSON.stringify({message: "Invalid Request"}));
         }
 
-        console.log(body);
-        console.log(data.password);
-
         const requiredFields = ["username", "password"];
         const missingFields = requiredFields.filter(field => !data[field]);
 
@@ -102,8 +99,12 @@ function loginHandler(req, res) {
                 res.writeHead(409, { 'Content-Type': 'application/json' });
                 return res.end(JSON.stringify({ message: "Username or Password is incorrect" }));
             }
-            // Send success
         })
+
+        const welcomeSite = path.join("./", "welcome.html")
+
+        res.writeHead(200, { 'Content-Type': 'application/json' });
+        return res.end(JSON.stringify({ url: welcomeSite }));
     })
 }
 
