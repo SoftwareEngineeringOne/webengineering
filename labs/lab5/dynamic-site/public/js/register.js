@@ -1,5 +1,5 @@
 document.getElementById('registerForm').addEventListener('submit', async (event) => {
-    event.preventDefault(); // Verhindert das Standardverhalten des Formulars
+    event.preventDefault();
 
     const form = event.target;
     const formData = new FormData(form);
@@ -16,10 +16,13 @@ document.getElementById('registerForm').addEventListener('submit', async (event)
 
     const body = await response.json();
 
+    const message = document.getElementById('message');
+
     if (!response.ok) {
-        const message = document.getElementById('message');
         message.style.color = 'red';
-        message.textContent = body.message;
+    } else {
+        message.style.color = 'green';
     }
+    message.innerHTML = body.message;
 
 });

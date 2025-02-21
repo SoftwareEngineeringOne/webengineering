@@ -58,11 +58,53 @@ function getHandler(req, res) {
 }
 
 function loginHandler(req, res) {
-    res.writeHead(500, { 'Content-Type': 'application/json' })
-    const response = {
-        message: "login error"
-    };
-    res.end(JSON.stringify(response));
+    let body = '';
+
+    req.on('data', chunk => {
+        body += chunk.toString();
+    });
+
+    req.on('end', () => {
+        let data;
+        try {
+            data = JSON.parse(body);
+        } catch (error) {
+            res.writeHead(400, {'Content-Type': 'application/json'});
+            res.end(JSON.stringify({message: "Invalid Request"}));
+        }
+
+        console.log(body);
+        console.log(data.password);
+
+        const requiredFields = ["username", "password"];
+        const missingFields = requiredFields.filter(field => !data[field]);
+
+        if (missingFields.length > 0) {
+            res.writeHead(400, { 'Content-Type': 'application/json' });
+            return res.end(JSON.stringify({ message : `Missing fields: ${missingFields.join(', ')}` }));
+        }
+
+        const filePath = path.join("./", 'users.json');
+
+        fs.readFile(filePath, 'utf8', (err, fileData) => {
+            let users = [];
+
+            if (!err && fileData) {
+                try {
+                    users = JSON.parse(fileData);
+                } catch (jsonErr) {
+                    users = [];
+                }
+            }
+
+            const existingUser = users.find(user => user.username === data.username);
+            if (existingUser === undefined || existingUser.password !== data.password) {
+                res.writeHead(409, { 'Content-Type': 'application/json' });
+                return res.end(JSON.stringify({ message: "Username or Password is incorrect" }));
+            }
+            // Send success
+        })
+    })
 }
 
 function registerHandler(req, res) {
@@ -84,9 +126,29 @@ function registerHandler(req, res) {
         const requiredFields = ["first_name", "last_name", "username", "password", "gender", "topic"];
         const missingFields = requiredFields.filter(field => !data[field]);
 
+        let message = [];
         if (missingFields.length > 0) {
+            message.push(`Missing fields: ${missingFields.join(', ')}` );
+        }
+
+        let regex = /[^A-Za-z0-9-_]/;
+        if (regex.test(data.first_name) || regex.test(data.last_name) || regex.test(data.username)) {
+            message.push(`One of the top three inputs has invalid special characters` );
+        }
+
+        regex = /[!#_,+\-?]/;
+        if (!regex.test(data.password)) {
+            message.push(`Password does not contains of the following symbols: !#,+-_?.` );
+        }
+
+        regex = /[0-9]/;
+        if (!regex.test(data.password)) {
+            message.push(`Password does not contain a figure` );
+        }
+
+        if (message.length !== 0) {
             res.writeHead(400, { 'Content-Type': 'application/json' });
-            return res.end(JSON.stringify({ message: `Missing fields: ${missingFields.join(', ')}` }));
+            return res.end(JSON.stringify({ message : message.join(`<br>`) }));
         }
 
         const filePath = path.join("./", 'users.json');
@@ -116,7 +178,7 @@ function registerHandler(req, res) {
                 }
 
                 res.writeHead(201, { 'Content-Type': 'application/json' });
-                res.end(JSON.stringify({ message: "User registered successfully" }));
+                return res.end(JSON.stringify({ message: `Hello ${data.first_name} ${data.last_name}!` }));
             });
         });
 
