@@ -6,13 +6,15 @@ document.getElementById('loginForm').addEventListener('submit', async (event) =>
 
     const jsonData = Object.fromEntries(formData.entries());
 
+    console.log("Sending: ", jsonData);
+
     const response = await fetch(form.action, {
         method: form.method,
         body: JSON.stringify(jsonData),
         headers: {
             "Content-Type": "application/json"
         }
-      });
+    });
 
     const body = await response.json();
 
