@@ -1,27 +1,100 @@
-<!-- TODO: Webseite mit 5 Themen (HTML5, CSS, JavaScript,
-    FlexBox, GridBox), die mithilfe des z-Indexes 
-    übereinander liegen -->
-
 <!DOCTYPE html>
 <html lang="de">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Labor 5 - Login</title>
-    <link rel="stylesheet" href="css/general.css">
+    <title>Dein Interessensbereich</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            position: relative;
+            width: 80%;
+            max-width: 600px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        .topic {
+            position: absolute;
+            width: 100%;
+            padding: 20px;
+            border-radius: 10px;
+            transition: opacity 0.5s ease-in-out;
+        }
+        #html5 { background-color: lightcoral; z-index: 1; }
+        #css { background-color: lightblue; z-index: 1; }
+        #javascript { background-color: lightgreen; z-index: 1; }
+    </style>
 </head>
-
 <body>
-    <div class="content-container" style="z-index: 0;">
-        <h1>I am section 1</h1>
+<div class="container">
+    <h1>Dein Interessensbereich</h1>
+    <div id="html5" class="topic">
+        <h2>HTML5</h2>
+        <p>HTML5 ist die aktuelle Version der Hypertext Markup Language mit neuen Funktionen.</p>
+        <ul>
+            <li>Semantische Tags wie &lt;article&gt;, &lt;section&gt;, &lt;nav&gt;</li>
+            <li>Unterstützung für Audio und Video ohne Plugins</li>
+            <li>Canvas für 2D-Grafiken und Animationen</li>
+        </ul>
     </div>
-    <div class="content-container" style="z-index: 1;">
-        <h1> I am section 2</h1>
+    <div id="css" class="topic">
+        <h2>CSS</h2>
+        <p>CSS ermöglicht das Styling von Webseiten mit Layout-Techniken wie Flexbox und Grid.</p>
+        <ul>
+            <li>Flexbox für flexible Layouts</li>
+            <li>CSS Grid für komplexe Designs</li>
+            <li>Animationen und Transitionen</li>
+        </ul>
     </div>
-    <div class="content-container" style="z-index: 2;">
-        <h1> I am section 3</h1>
+    <div id="javascript" class="topic">
+        <h2>JavaScript</h2>
+        <p>JavaScript ermöglicht interaktive Webseiten mit dynamischen Inhalten.</p>
+        <ul>
+            <li>DOM-Manipulation für dynamische Webseiten</li>
+            <li>Event Handling und Benutzerinteraktion</li>
+            <li>Integration von APIs und Datenbanken</li>
+        </ul>
     </div>
-</body>
+</div>
+<script>
+    document.addEventListener("DOMContentLoaded", async () => {
+        try {
+            const response = await fetch("/getUserData");
+            const data = await response.json();
 
+            if (!data.topic) {
+                window.location.href = "registration.html";
+                return;
+            }
+
+            document.querySelectorAll(".topic").forEach(el => el.style.display = "none");
+
+            const topicMap = {
+                "html": "html5",
+                "css": "css",
+                "js": "javascript"
+            };
+
+            const activeTopic = document.getElementById(topicMap[data.topic]);
+            if (activeTopic) {
+                activeTopic.style.display = "block";
+                activeTopic.style.zIndex = "10";
+            } else {
+                console.error("Kein passendes Thema gefunden für:", data.topic);
+            }
+        } catch (error) {
+            console.error("Fehler beim Laden der Benutzerdaten:", error);
+        }
+    });
+</script>
+</body>
 </html>
