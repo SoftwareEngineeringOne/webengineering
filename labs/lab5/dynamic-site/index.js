@@ -83,8 +83,9 @@ function loginHandler(req, res) {
 
         const filePath = path.join("./", 'users.json');
 
+        let user;
+        let users = [];
         fs.readFile(filePath, 'utf8', (err, fileData) => {
-            let users = [];
 
             if (!err && fileData) {
                 try {
@@ -94,28 +95,36 @@ function loginHandler(req, res) {
                 }
             }
 
-            const existingUser = users.find(user => user.username === data.username);
-            if (existingUser === undefined || existingUser.password !== data.password) {
+            user = users.find(user => user.username === data.username);
+            console.log("User:", user)
+            if (user === undefined || user.password !== data.password) {
                 res.writeHead(409, { 'Content-Type': 'application/json' });
                 return res.end(JSON.stringify({ message: "Username or Password is incorrect" }));
             }
-        })
 
-        const privateSite = path.join(".", "private", "private.html")
+
+        const privateSite = path.join(".", "private", "private.html");
+            console.log("User topic:", user.topic);
 
         fs.readFile(privateSite, (err, data) => {
             if (err) {
                 console.error(err);
-                res.writeHead(404, { 'Content-Type': 'text/html' });
+                res.writeHead(404, { 
+                        'Content-Type': 'text/html' ,
+                    });
                 res.end("<h1>404 Not Found</h1>");
                 return;
             }
 
 
-            res.writeHead(200, { 'Content-Type': 'text/html' });
+            res.writeHead(200, { 'Content-Type': 'text/html', 'X-User-Topic': user.topic });
             res.write(data);
             res.end();
         })
+        })
+
+
+
     })
 }
 
