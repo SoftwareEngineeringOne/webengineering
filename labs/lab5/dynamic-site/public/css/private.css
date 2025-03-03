@@ -1,0 +1,41 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 20px;
+}
+
+.container {
+    position: relative;
+    width: 80%;
+    max-width: 600px;
+    margin: auto;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.topic {
+    position: absolute;
+    width: 100%;
+    padding: 20px;
+    border-radius: 10px;
+    transition: opacity 0.5s ease-in-out;
+}
+
+#time {
+    position: absolute;
+    top: 90vh;
+}
+
+#longitude {
+    position: absolute;
+    top: 88vh;
+}
+
+#latitude {
+    position: absolute;
+    top: 86vh;
+}
