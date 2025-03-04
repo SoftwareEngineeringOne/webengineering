@@ -20,6 +20,10 @@
             bun
             nginx
             nodejs
+            openssl
+            docker-buildx
+            crun
+
           ];
 
           shellHook = ''

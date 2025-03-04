@@ -1,14 +1,22 @@
-version: "3.8"
 name: webengineering-project
 services:
   nodejs:
-    image: definitelynotsimon13/webengineering:deploy
+    build: .
+    container_name: nodejs
+    restart: always
     environment:
       NODE_ENV: "production"
 
   nginx:
-    image: definitelynotsimon13/nginx:latest
+    image: nginx:latest
+    container_name: nginx
+    restart: always
     ports:
+      - "443:443"
       - "80:80"
+    volumes:
+      - ./nginx/:/etc/nginx/
+      - ./public:/var/www/episko:ro
+      - ./certs:/etc/ssl/nginx
     depends_on:
       - nodejs

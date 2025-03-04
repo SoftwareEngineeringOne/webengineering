@@ -7,7 +7,7 @@
     "test": "echo \"Info: no test specified\" && exit 0",
     "start": "NODE_ENV=production node src/app.js",
     "format": "prettier --write .",
-    "dev": "nodemon -i src/public -e pug,css,js,html src/app.js"
+    "dev": "nodemon -i src/public -e pug,css,js src/app.js"
   },
   "author": "",
   "license": "MIT",

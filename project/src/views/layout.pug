@@ -8,7 +8,7 @@ html(lang="en")
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
     )
     block title
-      title Project Starter
+      title Episko
     block stylesheets
       link(rel="stylesheet", href="/css/styles.css")
     block scripts
@@ -16,7 +16,8 @@ html(lang="en")
 
   body
     .all
-      include components/header.pug
+      block header
+        include components/header.pug
 
       main
         block content
